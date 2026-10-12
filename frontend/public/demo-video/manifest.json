@@ -1,0 +1,182 @@
+{
+  "source": "Human-Imprint-v09.html",
+  "sourceSha256": "91be8b7167afc074d7ddac10860e0acc9f6b88a8add00451655fe614f2bda972",
+  "guideSourceSha256": "daac654ccf34d37045f89f810a5b5e86570f55cd18233ec29b130f799ef7b596",
+  "documents": [
+    {
+      "file": "index.html",
+      "bytes": 3637,
+      "sha256": "758461895143eb62b07cd3d1339e1329785ea6c15c6c961bb77b7a1a1aac09df"
+    },
+    {
+      "file": "Design-Bridge.html",
+      "bytes": 9416,
+      "sha256": "0476636ad8d1507b8cb5ae5187fcfed59329ebd02110bd93eb6eff12b8772ddb"
+    }
+  ],
+  "assets": [
+    {
+      "file": "assets/9599f12fd42fc0bce1cd.woff2",
+      "mime": "font/woff2",
+      "bytes": 2057688,
+      "sha256": "9599f12fd42fc0bce1cd50b47a0c022e108d7aa64dd0d1bb0ed44f3282d900b4",
+      "sources": [
+        "fonts/PretendardVariable.woff2",
+        "design-guide-1"
+      ]
+    },
+    {
+      "file": "assets/edd329a94d672524a538.png",
+      "mime": "image/png",
+      "bytes": 56468,
+      "sha256": "edd329a94d672524a538713f63e254c21b527c3bd29289d58abaed4e74994a7d",
+      "sources": [
+        "human-imprint/grain.png"
+      ]
+    },
+    {
+      "file": "assets/3ef449869921efaaa031.wav",
+      "mime": "audio/wav",
+      "bytes": 5120044,
+      "sha256": "3ef449869921efaaa031d3b8facc3e5f0caa9d08136248b4659257a223cc7ac4",
+      "sources": [
+        "human-imprint/score.wav"
+      ]
+    },
+    {
+      "file": "assets/49744d12c7a1001dfc05.wav",
+      "mime": "audio/wav",
+      "bytes": 10752044,
+      "sha256": "49744d12c7a1001dfc056676e6fcbe78c96dd71667ead915733459491da8bf80",
+      "sources": [
+        "human-imprint/pitch-score.wav"
+      ]
+    },
+    {
+      "file": "assets/9f1d97d43d133eb3fcc6.webm",
+      "mime": "video/webm",
+      "bytes": 20412789,
+      "sha256": "9f1d97d43d133eb3fcc69541e2cd5d4221b8aaa86d2107c768b6187948060351",
+      "sources": [
+        "human-imprint/teaching-recording/teaching-ui.webm"
+      ]
+    },
+    {
+      "file": "assets/c38c20a6f9fa5bfa731a.webm",
+      "mime": "video/webm",
+      "bytes": 27059240,
+      "sha256": "c38c20a6f9fa5bfa731aac91c340847c9f2a6c6a52385a0b62a5c67d54e87b7a",
+      "sources": [
+        "human-imprint/consultation-recording/consultation-ui.webm"
+      ]
+    },
+    {
+      "file": "assets/804a61266887498b6332.png",
+      "mime": "image/png",
+      "bytes": 2099142,
+      "sha256": "804a61266887498b6332427d18c6280ea2ea24a594140e1a4c17a9c3b8868665",
+      "sources": [
+        "human-imprint/people/yun-seojin.png"
+      ]
+    },
+    {
+      "file": "assets/21c00dddecca107d3eae.png",
+      "mime": "image/png",
+      "bytes": 2117370,
+      "sha256": "21c00dddecca107d3eaefcbe1d46e42849d4852205cde1559e92773d03e15a5e",
+      "sources": [
+        "human-imprint/people/kim-dohyeon.png"
+      ]
+    },
+    {
+      "file": "assets/e438e4c1caad6dfa39c7.png",
+      "mime": "image/png",
+      "bytes": 2221448,
+      "sha256": "e438e4c1caad6dfa39c74e92f9bcc0c1a900825596f7c298f5824c48c8777ecd",
+      "sources": [
+        "human-imprint/people/lee-sumin.png"
+      ]
+    },
+    {
+      "file": "assets/b0579c1f43e5c362549e.png",
+      "mime": "image/png",
+      "bytes": 2045933,
+      "sha256": "b0579c1f43e5c362549eca115c123e853ac1e57574fbbe62b47e6756a28f2e06",
+      "sources": [
+        "human-imprint/people/yun-seojin-ai.png"
+      ]
+    },
+    {
+      "file": "assets/a0df1cfe7913f42ca43a.png",
+      "mime": "image/png",
+      "bytes": 2058790,
+      "sha256": "a0df1cfe7913f42ca43a886eadf06541ff0632891a6c17c78f798c43258c6b66",
+      "sources": [
+        "human-imprint/people/customer.png"
+      ]
+    },
+    {
+      "file": "assets/f70d2f42c42a6d6d8fff.js",
+      "mime": "text/javascript",
+      "bytes": 532194,
+      "sha256": "f70d2f42c42a6d6d8fffe0373b506122dc854e5aa4ff2a8ce4001324a62c8b0d",
+      "sources": [
+        "approved-player.js"
+      ]
+    },
+    {
+      "file": "assets/c7e528538c13e878d2fc.png",
+      "mime": "image/png",
+      "bytes": 284974,
+      "sha256": "c7e528538c13e878d2fc6e14ff9bbac75546b0c25178e3544b1dcb5a763369fa",
+      "sources": [
+        "design-guide-2"
+      ]
+    },
+    {
+      "file": "assets/e58657b65b27cea9fc97.png",
+      "mime": "image/png",
+      "bytes": 186256,
+      "sha256": "e58657b65b27cea9fc9799518a6ed0f9635b2eba49a465fd6099747572df66b4",
+      "sources": [
+        "design-guide-3"
+      ]
+    },
+    {
+      "file": "assets/5c1cdc5b3c0917ef7660.png",
+      "mime": "image/png",
+      "bytes": 185168,
+      "sha256": "5c1cdc5b3c0917ef76607cbe5312d80b99a89cc01650ad1c04f54e49ecf11fec",
+      "sources": [
+        "design-guide-4"
+      ]
+    },
+    {
+      "file": "assets/04c730575cf6b6c5d2db.png",
+      "mime": "image/png",
+      "bytes": 237278,
+      "sha256": "04c730575cf6b6c5d2dbd992a7c9b8ec2f5b94726a458b846c5d7ebb57d17dc4",
+      "sources": [
+        "design-guide-5"
+      ]
+    },
+    {
+      "file": "assets/84b99f6b4ab43a4b3ce4.png",
+      "mime": "image/png",
+      "bytes": 227144,
+      "sha256": "84b99f6b4ab43a4b3ce4c8fb89dc8fa89c80a1d6280fe691b66ddb805090ce5f",
+      "sources": [
+        "design-guide-6"
+      ]
+    },
+    {
+      "file": "assets/aa5d8777cbb812771628.png",
+      "mime": "image/png",
+      "bytes": 91661,
+      "sha256": "aa5d8777cbb812771628f1684fdbfc913682975b3116d890ddaeb142478dde3e",
+      "sources": [
+        "design-guide-7"
+      ]
+    }
+  ]
+}

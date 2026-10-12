@@ -2,6 +2,22 @@ import path from "node:path";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Unlisted review URL. The standalone player stays outside the app shell.
+  async rewrites() {
+    return [{ source: "/demo-video", destination: "/demo-video/index.html" }];
+  },
+  async headers() {
+    return [
+      {
+        source: "/demo-video/:path*",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow, noarchive" }],
+      },
+      {
+        source: "/demo-video/assets/:path*",
+        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
+      },
+    ];
+  },
   /**
    * dev 서버는 기본적으로 `localhost` 오리진만 신뢰하고, 그 외에서 온 dev 전용
    * 엔드포인트 요청(HMR 웹소켓 포함)은 **응답 없이 끊는다**.
