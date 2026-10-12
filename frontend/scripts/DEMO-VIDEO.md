@@ -12,7 +12,7 @@ The HTML stays revalidatable, so the same sharing URL can show a later revision.
 To import a new approved standalone review, from `frontend/`:
 
 ```sh
-npm run demo-video:import -- /path/to/Human-Imprint-v09.html /path/to/Design-Bridge.html
+npm run demo-video:import -- /path/to/Human-Imprint-v10.html /path/to/Design-Bridge.html
 ```
 
 The importer extracts the existing media and JavaScript without recompression or
@@ -20,6 +20,11 @@ rebuilding the animation. It preserves query controls such as
 `/demo-video?frame=1860` and the linked brand guide. The export manifest records
 source and asset hashes. It retains older hashed assets for already-open viewers;
 remove obsolete files only when those revisions no longer need to be served.
+
+The current v10 film is 3:38. Expert selection starts at `/demo-video?frame=1980`;
+the customized-AI explanation starts at `/demo-video?frame=2370`. It clarifies
+immediate engagement, preliminary questions, addressable answers and escalation
+to the expert with the conversation context. Recorded narration is still pending.
 
 Verify the production build, playback, chapter seeking, the guide return link,
 mobile layout, `X-Robots-Tag`, asset cache headers and video byte-range responses
