@@ -27,6 +27,7 @@ const mimeExtensions = {
   "image/png": ".png",
   "image/jpeg": ".jpg",
   "audio/wav": ".wav",
+  "audio/mpeg": ".mp3",
   "video/webm": ".webm",
   "video/mp4": ".mp4",
   "text/javascript": ".js",
