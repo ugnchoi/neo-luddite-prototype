@@ -1,17 +1,17 @@
 {
-  "source": "Human-Imprint-v10.html",
-  "sourceSha256": "4af74a1b59607f854a62e8f2b24ee32cb6fa8f930799a22f405306160bbaa7b7",
-  "guideSourceSha256": "f8fb2b3b06e841f70c6d30f6702263480dffc48b4394d3af23b17bc901cb0174",
+  "source": "Human-Imprint-v11.html",
+  "sourceSha256": "2301a017ee0a174bc8a36c076e31b656d4d9520a0f27e7028a081ee1540b9e11",
+  "guideSourceSha256": "eb8001305be4f3f19f8f59fc6b5098b5954e5389f89b06ade62d8b2619b65ab1",
   "documents": [
     {
       "file": "index.html",
-      "bytes": 3637,
-      "sha256": "dad921d5a587dcbdcc74ba7e8c09ade7b13fdfb599081a4dc3af9299c1e7c44b"
+      "bytes": 3710,
+      "sha256": "45a06b3bb40dd8b714a2aeca26e81620742d60e14f76f4bd61d80ace4c4a0f8c"
     },
     {
       "file": "Design-Bridge.html",
-      "bytes": 9641,
-      "sha256": "a1311beb581b90dffa5aac37f1600ef617b58240a070d00372edf20d06b44f9c"
+      "bytes": 10141,
+      "sha256": "f21f5cc2792b3079030d82c8cab632a2ff44791a0e1fce84e3cd8515a7741633"
     }
   ],
   "assets": [
@@ -44,21 +44,12 @@
       ]
     },
     {
-      "file": "assets/66aba1b265727ed2b23f.wav",
+      "file": "assets/9b244cfde442a5db1e37.wav",
       "mime": "audio/wav",
-      "bytes": 11392044,
-      "sha256": "66aba1b265727ed2b23fbf59579dc87aea9633d44de821c19f73d61f0e1c073d",
+      "bytes": 12416044,
+      "sha256": "9b244cfde442a5db1e379c949914e5243a58b1feb109ba1aa789a0f0e8702a66",
       "sources": [
         "human-imprint/pitch-score.wav"
-      ]
-    },
-    {
-      "file": "assets/9f1d97d43d133eb3fcc6.webm",
-      "mime": "video/webm",
-      "bytes": 20412789,
-      "sha256": "9f1d97d43d133eb3fcc69541e2cd5d4221b8aaa86d2107c768b6187948060351",
-      "sources": [
-        "human-imprint/teaching-recording/teaching-ui.webm"
       ]
     },
     {
@@ -68,6 +59,24 @@
       "sha256": "c38c20a6f9fa5bfa731aac91c340847c9f2a6c6a52385a0b62a5c67d54e87b7a",
       "sources": [
         "human-imprint/consultation-recording/consultation-ui.webm"
+      ]
+    },
+    {
+      "file": "assets/22908928d3972aa7b1dc.png",
+      "mime": "image/png",
+      "bytes": 1740335,
+      "sha256": "22908928d3972aa7b1dcf5b9b556f3309189e742deeb3da2bdf36af27e348e25",
+      "sources": [
+        "human-imprint/cinema/doctor-start.png"
+      ]
+    },
+    {
+      "file": "assets/88aa465301ca097e1baa.png",
+      "mime": "image/png",
+      "bytes": 1824105,
+      "sha256": "88aa465301ca097e1baa34c4b55cb6ac6d3b02feff94d521f11006665d89af30",
+      "sources": [
+        "human-imprint/cinema/expert-start.png"
       ]
     },
     {
@@ -116,64 +125,64 @@
       ]
     },
     {
-      "file": "assets/19a824ddbe9d23bfde08.js",
+      "file": "assets/cd1d5cf55077cf3ea22c.js",
       "mime": "text/javascript",
-      "bytes": 537342,
-      "sha256": "19a824ddbe9d23bfde08ca5d748d3b0924c6e0954ec9101f0a8d556d7cd29226",
+      "bytes": 543976,
+      "sha256": "cd1d5cf55077cf3ea22c3b2b1e958768aa507513099f3042f81e5c9b5098b0af",
       "sources": [
         "approved-player.js"
       ]
     },
     {
-      "file": "assets/b43d51cbd6ae1d2f3cbe.png",
+      "file": "assets/efc27228d3845b42e6d4.png",
       "mime": "image/png",
-      "bytes": 284974,
-      "sha256": "b43d51cbd6ae1d2f3cbee33a8fa56a85934f62e10ea43dad9fbe41d606f01335",
+      "bytes": 285035,
+      "sha256": "efc27228d3845b42e6d4b3dc1423aa988a7a2ac2c2e6f2e24a22c2184138ad8b",
       "sources": [
         "design-guide-2"
       ]
     },
     {
-      "file": "assets/951bc992b64fbe1bd48a.png",
+      "file": "assets/f6d377badecd5e28e084.png",
       "mime": "image/png",
-      "bytes": 186256,
-      "sha256": "951bc992b64fbe1bd48aac4d3c6ff4dd528160389db805739076b90c60ccc3c5",
+      "bytes": 1403983,
+      "sha256": "f6d377badecd5e28e084a0cb79882735018a5d2e245077caab918eeb16d3d773",
       "sources": [
         "design-guide-3"
       ]
     },
     {
-      "file": "assets/f140ec03927b8a75d110.png",
+      "file": "assets/27af2a7555a20ea54e7f.png",
       "mime": "image/png",
-      "bytes": 185168,
-      "sha256": "f140ec03927b8a75d110e77b29ce097e2e54bb0d1289be5cc8e0c4812d8579ce",
+      "bytes": 107213,
+      "sha256": "27af2a7555a20ea54e7fd602a60cae604ef38e6a904cd02e163bf82320c6bfdf",
       "sources": [
         "design-guide-4"
       ]
     },
     {
-      "file": "assets/3e4d8a09790078a43e7d.png",
+      "file": "assets/d8890cc875e9e2b5aba9.png",
       "mime": "image/png",
-      "bytes": 237278,
-      "sha256": "3e4d8a09790078a43e7d88d6357c7d2a62741048a72d2387ecefc771c27e9a04",
+      "bytes": 237339,
+      "sha256": "d8890cc875e9e2b5aba9b76852fb33a7db9f2ae8271d535de0cd5477497dc7dc",
       "sources": [
         "design-guide-5"
       ]
     },
     {
-      "file": "assets/d25fb331088745dd2281.png",
+      "file": "assets/44972eca2276ab2536ca.png",
       "mime": "image/png",
-      "bytes": 227144,
-      "sha256": "d25fb331088745dd2281eb8d56e207e483fe610a2a00433085f3b791fb6f1385",
+      "bytes": 194717,
+      "sha256": "44972eca2276ab2536ca33d69c55ba1c6717c950cf2894bf5c7185131e0a689d",
       "sources": [
         "design-guide-6"
       ]
     },
     {
-      "file": "assets/2b6f0280c1c2396a3bc7.png",
+      "file": "assets/9c6c245c074ebc367714.png",
       "mime": "image/png",
-      "bytes": 91661,
-      "sha256": "2b6f0280c1c2396a3bc738f33ce767cb2964df7cee4df564016da9e73c5e1b6d",
+      "bytes": 229928,
+      "sha256": "9c6c245c074ebc3677149cabc5d16ddf6b930e9f34328005e159944f3f6c043b",
       "sources": [
         "design-guide-7"
       ]
