@@ -1,0 +1,82 @@
+{
+  "source": "CrediGraph-Booth-v01.html",
+  "sourceSha256": "2edda5cfd8a1956141804ec3561bf985d91c184386f0ea20f41e8c9575f6a47e",
+  "entry": "booth.html",
+  "entrySha256": "81ef4ab908e90257388d3579cec519f7783ab6f7cbb15dad61734ad7b1fda89a",
+  "durationSeconds": 40,
+  "width": 1080,
+  "height": 1920,
+  "qrDestination": "https://neo-luddite-prototype.vercel.app/",
+  "assets": [
+    {
+      "file": "assets/9599f12fd42fc0bce1cd.woff2",
+      "mime": "font/woff2",
+      "bytes": 2057688,
+      "sha256": "9599f12fd42fc0bce1cd50b47a0c022e108d7aa64dd0d1bb0ed44f3282d900b4",
+      "source": "fonts/PretendardVariable.woff2"
+    },
+    {
+      "file": "assets/978c55d5f2eb68e2dd53.mp4",
+      "mime": "video/mp4",
+      "bytes": 204778,
+      "sha256": "978c55d5f2eb68e2dd53d8b3aef6f387ed21ac76e9a281c85b4cd6338fea4b2b",
+      "source": "booth/v01/ui-referral.mp4"
+    },
+    {
+      "file": "assets/f00e2622c2512f259987.mp3",
+      "mime": "audio/mpeg",
+      "bytes": 5761610,
+      "sha256": "f00e2622c2512f25998792a4c00724cca247191c2e8f28fff97e13c6471ab89c",
+      "source": "human-imprint/growth-score.mp3"
+    },
+    {
+      "file": "assets/bb30555c00e6ea3a508e.mp4",
+      "mime": "video/mp4",
+      "bytes": 1638835,
+      "sha256": "bb30555c00e6ea3a508e87cf780af82b205cb0e2a97996d32d6e7d9efef9e7a0",
+      "source": "human-imprint/cinema/doctor-shot.mp4"
+    },
+    {
+      "file": "assets/599ece886b2ae0db3b9f.mp4",
+      "mime": "video/mp4",
+      "bytes": 1779026,
+      "sha256": "599ece886b2ae0db3b9fd61a33907d381419d0fe54d280bd9f1045ade2d6a4c3",
+      "source": "human-imprint/cinema/expert-shot.mp4"
+    },
+    {
+      "file": "assets/804a61266887498b6332.png",
+      "mime": "image/png",
+      "bytes": 2099142,
+      "sha256": "804a61266887498b6332427d18c6280ea2ea24a594140e1a4c17a9c3b8868665",
+      "source": "human-imprint/people/yun-seojin.png"
+    },
+    {
+      "file": "assets/21c00dddecca107d3eae.png",
+      "mime": "image/png",
+      "bytes": 2117370,
+      "sha256": "21c00dddecca107d3eaefcbe1d46e42849d4852205cde1559e92773d03e15a5e",
+      "source": "human-imprint/people/kim-dohyeon.png"
+    },
+    {
+      "file": "assets/e438e4c1caad6dfa39c7.png",
+      "mime": "image/png",
+      "bytes": 2221448,
+      "sha256": "e438e4c1caad6dfa39c74e92f9bcc0c1a900825596f7c298f5824c48c8777ecd",
+      "source": "human-imprint/people/lee-sumin.png"
+    },
+    {
+      "file": "assets/b0579c1f43e5c362549e.png",
+      "mime": "image/png",
+      "bytes": 2045933,
+      "sha256": "b0579c1f43e5c362549eca115c123e853ac1e57574fbbe62b47e6756a28f2e06",
+      "source": "human-imprint/people/yun-seojin-ai.png"
+    },
+    {
+      "file": "assets/e14fd67e4b3e41eace47.js",
+      "mime": "text/javascript",
+      "bytes": 494656,
+      "sha256": "e14fd67e4b3e41eace47fa1c4f954ee17a4e695fa1339d4668c7b29a48a3ecc0",
+      "source": "booth-player.js"
+    }
+  ]
+}
