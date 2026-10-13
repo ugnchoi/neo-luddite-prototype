@@ -28,6 +28,7 @@ const mimeExtensions = {
   "image/jpeg": ".jpg",
   "audio/wav": ".wav",
   "video/webm": ".webm",
+  "video/mp4": ".mp4",
   "text/javascript": ".js",
 };
 const assets = new Map();
