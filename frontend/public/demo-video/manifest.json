@@ -1,17 +1,17 @@
 {
-  "source": "Human-Imprint-v13.html",
-  "sourceSha256": "11109fa7fb77af411b9550b0fa89c55dcb9aa0bbc6ac1feaf1891708fc2a56f1",
-  "guideSourceSha256": "10c60e88c1c580ae44de4cd70eddde78202b8b03cb306967465b92437d647b37",
+  "source": "Human-Imprint-v14.html",
+  "sourceSha256": "825a917d3a59a55e0490e2e5193d74b1d4575b5b141fbf61fc79f0a1da9d0102",
+  "guideSourceSha256": "1452c0311d9ffa72fc255cbe8a9c35ae476a102a32f6ce584ee4d2afecfa4e7d",
   "documents": [
     {
       "file": "index.html",
       "bytes": 3809,
-      "sha256": "44df0e95b50d1d4de736afbf9f1e3b2f6f1f51c7a477f1cc50f9eb7ce8eb94a3"
+      "sha256": "803627de230b8e4558fef4a46611d26649d2d3160b401111a0fc01db0b328b1e"
     },
     {
       "file": "Design-Bridge.html",
-      "bytes": 10284,
-      "sha256": "7beb6095a2a4d341b1341e21c0182a13052ebf4a7cfcf8052939a17efb41eb98"
+      "bytes": 10473,
+      "sha256": "d32fc64e8ac1332e25834ecfea86e3d0a5befaee7e9c8e31616de92b59a7167c"
     }
   ],
   "assets": [
@@ -35,12 +35,12 @@
       ]
     },
     {
-      "file": "assets/f00e2622c2512f259987.mp3",
+      "file": "assets/ecc1dd1c0b23efbc5b35.mp3",
       "mime": "audio/mpeg",
       "bytes": 5761610,
-      "sha256": "f00e2622c2512f25998792a4c00724cca247191c2e8f28fff97e13c6471ab89c",
+      "sha256": "ecc1dd1c0b23efbc5b35f5110be68bb1a49c03d3661eb5dee72f1461a4ab1b18",
       "sources": [
-        "human-imprint/growth-score.mp3"
+        "human-imprint/film-mix-v14.mp3"
       ]
     },
     {
@@ -134,64 +134,64 @@
       ]
     },
     {
-      "file": "assets/248393d11e8f3e570b16.js",
+      "file": "assets/8cff447740277644790f.js",
       "mime": "text/javascript",
-      "bytes": 545467,
-      "sha256": "248393d11e8f3e570b160eadb53691f0eaaa4d62eb9d211f06eb9c5f69a0e62b",
+      "bytes": 556374,
+      "sha256": "8cff447740277644790fbb14bb035604a6699d2a7297ec2335c436b5aa0e6172",
       "sources": [
         "approved-player.js"
       ]
     },
     {
-      "file": "assets/de5bd60eb1b498ab77f5.png",
+      "file": "assets/a9824ccb037fb9f4d992.png",
       "mime": "image/png",
       "bytes": 285043,
-      "sha256": "de5bd60eb1b498ab77f596afa7b52caf50b3ea9ac8116735a64ea03f3ade7391",
+      "sha256": "a9824ccb037fb9f4d9921fde849af9aefd46686c2f5caa56a683a0e9c77ef2cf",
       "sources": [
         "design-guide-2"
       ]
     },
     {
-      "file": "assets/6f8436b99ff1ab3a16b0.png",
+      "file": "assets/403a85efd38de6faf8fc.png",
       "mime": "image/png",
       "bytes": 1294401,
-      "sha256": "6f8436b99ff1ab3a16b05d4c7df7e371045d05b99ba7369ddcc719a76c47b4f2",
+      "sha256": "403a85efd38de6faf8fcaf69e07994d14a5f99f3b9838d1368c8afbbcf0218b2",
       "sources": [
         "design-guide-3"
       ]
     },
     {
-      "file": "assets/c7327c6391547e242849.png",
+      "file": "assets/60b27c28c97918cfde49.png",
       "mime": "image/png",
-      "bytes": 107221,
-      "sha256": "c7327c6391547e242849eef87ec313eee05bc0a75c6b03836629aa152966bd10",
+      "bytes": 378487,
+      "sha256": "60b27c28c97918cfde49ec9c251ad82871fe35bd7032e343654a85ae3130a1b2",
       "sources": [
         "design-guide-4"
       ]
     },
     {
-      "file": "assets/9e4ab85a7f4c1ee92a0d.png",
+      "file": "assets/1883007772817de3e6d7.png",
       "mime": "image/png",
-      "bytes": 237347,
-      "sha256": "9e4ab85a7f4c1ee92a0dd06aa905c4ca4df5eb7f7d01c0b51d43fb608c275753",
+      "bytes": 466977,
+      "sha256": "1883007772817de3e6d7ec904326c8d2028676db87bd1a398bca74180fd6965c",
       "sources": [
         "design-guide-5"
       ]
     },
     {
-      "file": "assets/78ad29387bf4fac3d742.png",
+      "file": "assets/c20524b287bac47bd678.png",
       "mime": "image/png",
-      "bytes": 194735,
-      "sha256": "78ad29387bf4fac3d742673521bc8b4a88b5ae95c8844cb3f90a15257fe0b7f3",
+      "bytes": 358467,
+      "sha256": "c20524b287bac47bd678a2b4f7edba9570b6962834a4e351c776a26ceb7b8a4c",
       "sources": [
         "design-guide-6"
       ]
     },
     {
-      "file": "assets/1850c4be6294eb317c87.png",
+      "file": "assets/651935ac3f5886baa311.png",
       "mime": "image/png",
-      "bytes": 75264,
-      "sha256": "1850c4be6294eb317c879d7b4eac5ebe7ad0be5c12a597e175aaa6b4b3f29dd1",
+      "bytes": 75597,
+      "sha256": "651935ac3f5886baa31164b0a70b8d8e12cb2ede6079dc8be06b01b5d051125c",
       "sources": [
         "design-guide-7"
       ]
