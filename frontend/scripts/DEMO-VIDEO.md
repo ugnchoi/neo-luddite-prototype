@@ -12,7 +12,7 @@ The HTML stays revalidatable, so the same sharing URL can show a later revision.
 To import a new verified standalone review, from `frontend/`:
 
 ```sh
-npm run demo-video:import -- /path/to/Human-Imprint-v13.html /path/to/Design-Bridge.html
+npm run demo-video:import -- /path/to/Human-Imprint-v14.html /path/to/Design-Bridge.html
 ```
 
 The importer extracts the existing media and JavaScript without recompression or
@@ -21,23 +21,27 @@ rebuilding the animation. It preserves query controls such as
 source and asset hashes. It retains older hashed assets for already-open viewers;
 remove obsolete files only when those revisions no longer need to be served.
 
-The current v13 review is 4:00. Four act openings start at frames 1200
-(doctor/question), 2910 (human judgment), 3300 (conversation to knowledge),
-and 5100 (collective contribution). The closing starts at frame 6600; the final
-CrediGraph wordmark is settled by frame 7050. It ends with:
+The current v14 review is 4:00. Act openings start at frames 1200 (doctor),
+2910 (human judgment), 3300 (conversation to knowledge), and 5100 (collective
+contribution). The ending starts at 6600; CrediGraph arrives at 7000 and the
+camera settles at 7125. Final statement:
 전문가와 AI가 함께 성장하는 생태계를 만들어갑니다.
 
-The ending shows reciprocal expert–AI growth and uses the established black
-Credi / green Graph wordmark from the user's previous video. The new original
-108 BPM instrumental score runs through the film and resolves with the logo.
-The importer supports audio/mpeg as well as the existing WAV/video types.
+A reviewed judgment visibly becomes the next agent question. Its contour
+signature carries into personal capacity, attributed contributions and a
+projected three-dimensional ecosystem. Live focus/camera motion continues
+while genuine recorded UI holds on a completed answer. The original accepted
+opening and authentic source conversation remain preserved.
 
-Earlier visuals and narration timing (0–220s) are preserved. The genuine
-referral conversation remains complete; the customized-AI sequence is intact.
-Teaching and sharing use motion graphics. Doctor and expert scenes now use
-user-supplied AI-generated moving clips, cropped from preserved originals.
-The player discloses fictional generated people and future-model concepts.
-Recorded narration remains pending; captions are provisional.
+The soundtrack includes Korean AI narration in three preset voices, an
+original positive 108 BPM score, and semantic imprint/handoff sounds. The
+music ducks around the measured speech. Voice and user-supplied character
+movies are disclosed as AI generated. Collective model improvement is future
+vision. No live-training or quantified improvement claim is made.
+
+This export changes the horizontal full film only. `booth.html` and its
+manifest remain the separate portrait booth v02. No app navigation links are
+added. The public URL remains unlisted, not access-controlled.
 
 Verify the production build, playback, chapter seeking, the guide return link,
 mobile layout, `X-Robots-Tag`, asset cache headers and video byte-range responses
