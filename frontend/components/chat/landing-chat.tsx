@@ -29,17 +29,17 @@ export function LandingChat() {
     void entryChatStore.getState().send(id, scope, getScenario());
     router.push(chatHref(id));
   }
-  return <section className={styles.panel} aria-label="바로 시작하는 세무 상담">
+  return <section id="consultation" tabIndex={-1} className={`${styles.panel} ${styles.landingPanel}`} aria-label="바로 시작하는 세무 상담">
     <header className={styles.panelHeader}>
       <div className={styles.panelIdentity}><TaxAgentAvatar size="small" /><span>첫 질문부터, 함께</span></div>
       <span className={styles.sampleLabel}>{isPrototype ? "병의원 상담 예시" : "병의원 상담"}</span>
     </header>
     <div className={styles.intro}>
       <h2>어떤 일이 있으셨나요?</h2>
-      <p>정리되지 않은 이야기여도 괜찮아요.<br />궁금한 상황을 한 문장으로 시작해 보세요.</p>
-      <EntryPrompts disabled={!ready} onSelect={(text) => { setDraft(text); input.current?.focus(); }} />
+      <p>사업하며 생긴 질문을 편하게 적어 주세요.</p>
     </div>
     <div className={styles.composerWrap}><EntryComposer embedded inputRef={input} value={ready ? draft : ""} onChange={setDraft} onSend={start} disabled={!ready} /></div>
+    <div className={styles.landingPrompts}><EntryPrompts disabled={!ready} onSelect={(text) => { setDraft(text); input.current?.focus(); }} /></div>
     <p className={styles.disclosure}>{isPrototype ? "샘플 응답으로 상담 흐름을 체험합니다. 대화는 이 브라우저에 보관되며 실제 세무 판단을 제공하지 않습니다." : "AI가 세법 자료를 바탕으로 답변합니다. 대화는 이 브라우저에 보관되며, 최종 판단은 세무사와 확인해 주세요."}</p>
   </section>;
 }

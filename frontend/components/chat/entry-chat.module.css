@@ -63,3 +63,28 @@
   .workspaceLink { padding: 8px; font-size: 12px; }
 }
 @media (forced-colors: active) { .panel, .message[data-role="user"] { border: 1px solid CanvasText; } }
+
+.landingPanel { border-radius: var(--ds-radius-card); background: var(--ds-paper); box-shadow: var(--ds-shadow); }
+.landingPanel .panelHeader { padding: 19px 24px; }
+.landingPanel .panelIdentity { font-size: 13px; gap: 8px; }
+.landingPanel .sampleLabel { font-size: 11px; }
+.landingPanel .intro { padding: 25px 24px 18px; }
+.landingPanel .intro h2 { font-size: 24px; letter-spacing: -.03em; }
+.landingPanel .intro p { font-size: 14px; }
+.landingPanel .suggestions { margin-top: 20px; }
+.landingPanel .suggestions button { font-size: 13px; min-height: 46px; gap: 9px; }
+.landingPanel .composerWrap { padding: 0 18px 18px; }
+.landingPanel .composer { background: var(--ds-canvas); }
+.landingPanel .composer textarea { font-size: 14px; }
+.landingPanel .disclosure { padding: 0 24px 20px; font-size: 11px; }
+
+.landingPrompts { padding: 0 24px 18px; }
+.landingPrompts .suggestions { margin-top: 0; }
+@media (max-width: 700px) {
+  .landingPanel .panelHeader { padding-block: 12px; }
+  .landingPanel .intro { padding-block: 14px 12px; }
+  .landingPanel .intro p { margin-top: 6px; }
+  .landingPrompts { padding: 0 18px 14px; }
+}
+
+@media (max-width: 700px) { .landingPanel .composer textarea { font-size: 16px; } }
