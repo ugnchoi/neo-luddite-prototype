@@ -1,102 +1,86 @@
 "use client";
 
 import { useRef } from "react";
-import Image from "next/image";
-import Link from "next/link";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowRight, Check, FileText, MessageCircle, Paperclip } from "lucide-react";
+import { ArrowDown, ArrowRight, FileText, Paperclip } from "lucide-react";
+import { ImprintMark } from "@/components/design-system/imprint";
 import styles from "./consultation-story.module.css";
 
-// Registering plugins is SSR-safe; all DOM work stays inside useGSAP.
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-const chapters = [
-  { title: <>정리되지 않은<br />질문도 괜찮아요.</>, body: "세무 용어 대신, 사업하며 있었던 일부터.", label: "질문하기" },
-  { title: <>놓친 맥락을 짚고,<br />필요한 자료를 모으고.</>, body: "세무사와 이야기할 준비를 대화로 차근차근.", label: "상황 정리" },
-  { title: <>마지막은,<br />사람과의 대화로.</>, body: "정리한 질문을 바탕으로 실제 세무사와 이어집니다.", label: "세무사 상담" },
+const steps = [
+  { label: "질문에서", title: <>사업자의 말로<br />시작하면,</>, body: "세무 용어를 몰라도 괜찮아요. 지금 궁금한 일을 그대로 이야기하세요." },
+  { label: "상황을 정리하고", title: <>대화가 쌓여<br />상담의 맥락이 되고,</>, body: "알게 된 사실과 더 확인할 내용을 나누어, 필요한 자료를 짚습니다." },
+  { label: "세무사에게", title: <>그 맥락 그대로,<br />세무사와 이어집니다.</>, body: "처음부터 다시 설명하지 않도록. 나의 질문과 정리한 내용을 함께 전합니다." },
 ];
 
-function QuestionScene() {
-  return <div className={`${styles.scene} ${styles.questionScene}`} data-scene="0">
-    <div className={styles.questionMark} aria-hidden="true">?</div>
-    <div className={styles.ownerQuestion}><MessageCircle size={22} /><p>리스한 차를 가족도 쓰는데,<br /><strong>비용처리가 될까요?</strong></p></div>
-    <div className={styles.followup}><span className={styles.aiMark}>AI</span><p>업무에는 어떻게<br />사용하고 계신가요?</p></div>
-    <span className={styles.sceneCaption}>사업자의 말로 시작하는 상담 예시</span>
-  </div>;
-}
-
-function BriefScene() {
-  return <div className={`${styles.scene} ${styles.briefScene}`} data-scene="1">
-    <div className={styles.paperBehind} />
-    <div className={styles.briefPaper}>
-      <div className={styles.paperHeading}><FileText size={22} /><span>세무사와 함께 확인할 내용</span></div>
-      <h3>차량 비용, 어디까지?</h3>
-      <div className={styles.factRow}><span>이용 목적</span><strong>업무 + 가족 이용</strong><Check size={17} /></div>
-      <div className={styles.factRow}><span>확인할 사항</span><strong>업무용 이용 비율</strong><span className={styles.openQuestion}>?</span></div>
-      <div className={styles.documentRow}><Paperclip size={17} /><span>운행 기록</span><span>리스 계약서</span></div>
-      <div className={styles.paperRule} /><div className={styles.paperRule} />
-    </div>
-    <span className={styles.sceneCaption}>확인할 사실과 자료를 정리하는 예시</span>
-  </div>;
-}
-
-function ProfessionalScene() {
-  return <div className={`${styles.scene} ${styles.professionalScene}`} data-scene="2">
-    <div className={styles.handoff}><FileText size={18} /><span>나의 질문과 상담 맥락</span><ArrowRight size={18} /></div>
-    <div className={styles.expertPortrait}><Image src="/experts/preset-1.webp" alt="" width={360} height={440} sizes="(max-width: 899px) 220px, 320px" /><span>샘플 프로필</span></div>
-    <div className={styles.expertReply}><MessageCircle size={20} /><p>함께 확인하고,<br /><strong>판단을 이어갑니다.</strong></p></div>
-    <span className={styles.sceneCaption}>실제 접수가 아닌 전문가 연결 흐름 예시</span>
-  </div>;
-}
-
-const Scenes = [QuestionScene, BriefScene, ProfessionalScene];
-
 export function ConsultationStory() {
-  const root = useRef<HTMLDivElement>(null);
+  const root = useRef<HTMLElement>(null);
   useGSAP(() => {
     const element = root.current;
     if (!element) return;
     const media = gsap.matchMedia();
-    media.add("(min-width: 900px) and (prefers-reduced-motion: no-preference)", () => {
-      const panels = gsap.utils.toArray<HTMLElement>("[data-story-visual] [data-scene]", element);
+    media.add("(min-width: 1100px) and (min-height: 720px) and (prefers-reduced-motion: no-preference)", () => {
       element.dataset.enhanced = "true";
-      element.dataset.chapter = "0";
-      gsap.set(panels, { autoAlpha: 0 });
-      gsap.set(panels[0], { autoAlpha: 1 });
-      const timeline = gsap.timeline({ scrollTrigger: {
-        trigger: element, start: "top top", end: "bottom bottom", scrub: 0.35,
+      element.dataset.step = "0";
+      const followup = element.querySelectorAll("[data-reveal='context']");
+      const brief = element.querySelectorAll("[data-reveal='brief']");
+      const handoff = element.querySelectorAll("[data-reveal='handoff']");
+      gsap.set([followup, brief, handoff], { opacity: 0, y: 14 });
+      const timeline = gsap.timeline({ defaults: { ease: "none" }, scrollTrigger: {
+        trigger: element, start: "top top", end: "bottom bottom", scrub: 0.25,
         invalidateOnRefresh: true,
-        onUpdate: (trigger) => { element.dataset.chapter = String(Math.min(2, Math.floor(trigger.progress * 3))); },
+        onUpdate: ({ progress }) => { element.dataset.step = progress < 0.26 ? "0" : progress < 0.66 ? "1" : "2"; },
       } });
-      timeline.to({}, { duration: 0.8 })
-        .to(panels[0], { autoAlpha: 0, y: -24, duration: 0.25 })
-        .fromTo(panels[1], { y: 28, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.35 }, "<")
-        .to({}, { duration: 0.65 })
-        .to(panels[1], { autoAlpha: 0, y: -24, duration: 0.25 })
-        .fromTo(panels[2], { y: 28, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.35 }, "<")
-        .to({}, { duration: 0.65 });
-      return () => { delete element.dataset.enhanced; delete element.dataset.chapter; };
+      timeline.to({}, { duration: 1 })
+        .to(followup, { opacity: 1, y: 0, duration: 0.14 }, 0.18)
+        .to(brief, { opacity: 1, y: 0, duration: 0.18, stagger: 0.035 }, 0.29)
+        .to(handoff, { opacity: 1, y: 0, duration: 0.18 }, 0.64);
+      return () => { delete element.dataset.enhanced; delete element.dataset.step; };
     });
     return () => media.revert();
   }, { scope: root });
 
-  return <div ref={root} id="how-it-works" className={styles.story}>
-    <div className={styles.visual} data-story-visual aria-hidden="true">
-      <div className={styles.visualFrame}>
-        {Scenes.map((Scene, index) => <Scene key={index} />)}
-        <div className={styles.progress}><span /><span /><span /></div>
+  return <section ref={root} id="how-it-works" className={styles.story} aria-labelledby="story-title">
+    <div className={styles.sticky}>
+      <div className={styles.intro}>
+        <h2 id="story-title" className={styles.staticTitle}>질문에서 시작해,<br />함께 판단할 준비까지.</h2>
+        <div className={styles.copyStack} aria-hidden="true">
+          {steps.map((step, index) => <div className={styles.stepCopy} data-copy={index} key={step.label}><h2>{step.title}</h2><p>{step.body}</p></div>)}
+        </div>
+        <ol className={styles.steps} aria-label="상담 흐름">
+          {steps.map((step, index) => <li data-indicator={index} key={step.label}><span>0{index + 1}</span>{step.label}</li>)}
+        </ol>
+        <p className={styles.scrollHint}><ArrowDown size={14} aria-hidden="true" />스크롤하며 이어지는 과정을 살펴보세요</p>
+      </div>
+      <div className={styles.record}>
+        <div className={styles.recordHeader}><span><ImprintMark size={22} />상담 준비</span><span className={styles.example}>흐름을 보여주는 예시</span></div>
+        <div className={styles.recordBody}>
+          <div className={styles.conversation}>
+            <p className={styles.panelLabel}>01 <span>나의 질문</span></p>
+            <p className={styles.question}>리스한 차를 가족도 쓰는데,<br /><strong>비용처리가 될까요?</strong></p>
+            <div className={styles.exchange} data-reveal="context">
+              <div className={styles.aiQuestion}><span>AI</span><p>업무에는 어떻게 사용하고 계신가요?</p></div>
+              <div className={styles.ownerReply}><p>병원 업무와 가족 이동에<br />함께 사용해요.</p></div>
+            </div>
+            <div className={styles.contextNote} data-reveal="brief"><span className={styles.contextLine} /><span>대화 속 사실이 상담 메모로</span><ArrowRight size={16} aria-hidden="true" /></div>
+          </div>
+          <div className={styles.brief}>
+            <p className={styles.panelLabel}>02 <span>함께 확인할 내용</span><FileText size={17} aria-hidden="true" /></p>
+            <h3>차량 비용 상담 메모</h3>
+            <dl className={styles.facts}>
+              <div data-reveal="brief"><dt>알게 된 사실</dt><dd>업무와 가족 이용이 섞여 있어요.</dd></div>
+              <div data-reveal="brief"><dt>더 확인할 점</dt><dd>업무용으로 쓰는 비율은 얼마일까요?</dd></div>
+              <div data-reveal="brief"><dt>준비할 자료</dt><dd className={styles.documents}><span><Paperclip size={14} aria-hidden="true" />운행 기록</span><span><Paperclip size={14} aria-hidden="true" />리스 계약서</span></dd></div>
+            </dl>
+            <p className={styles.briefPlaceholder} aria-hidden="true">대화하며 하나씩 정리됩니다.</p>
+          </div>
+        </div>
+        <div className={styles.handoff} data-reveal="handoff"><span className={styles.handoffNumber}>03</span><div><h3>세무사와 이어갈 질문</h3><p>“이 이용 내역으로, 비용처리 범위를 함께 확인하고 싶어요.”</p></div><ArrowRight size={22} aria-hidden="true" /></div>
+        <p className={styles.recordCaption}>병의원 차량 사례로 구성한 예시입니다. 실제 상담 신청이나 세무 판단이 아닙니다.</p>
       </div>
     </div>
-    <div className={styles.chapters}>
-      {chapters.map((chapter, index) => {
-        const Scene = Scenes[index];
-        return <section key={chapter.label} className={styles.chapter} aria-labelledby={`chapter-${index}`} data-story-step={index}>
-          <div className={styles.chapterCopy}><span className={styles.chapterNumber}>0{index + 1} / 03</span><h2 id={`chapter-${index}`}>{chapter.title}</h2><p>{chapter.body}</p>{index === 2 && <Link href="/about">서비스 소개 <ArrowRight size={18} /></Link>}</div>
-          <div className={styles.inlineVisual} aria-hidden="true"><Scene /></div>
-        </section>;
-      })}
-    </div>
-  </div>;
+  </section>;
 }

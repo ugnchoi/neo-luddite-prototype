@@ -1,5 +1,7 @@
 # Guest-first conversation entry
 
+> Current public-homepage composition and its 2026-10-20 verification record are documented in [Homepage consultation story](homepage-consultation-story.md). The landing composition and 2026-10-02 verification below are historical; retain them as context for the original guest-chat and account-transition implementation, not as evidence for the current homepage.
+
 Mode: Persuade on `/`, Operate in chat. This implements the user's approved entry-flow plan on the completed luminous design system.
 
 THESIS: The first question is the entrance. A visitor can describe a situation immediately, then carry that same conversation into an account and, when needed, an expert consultation.
