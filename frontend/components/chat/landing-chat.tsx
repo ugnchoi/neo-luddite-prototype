@@ -12,7 +12,7 @@ import { EntryComposer } from "./entry-composer";
 import { EntryPrompts } from "./entry-prompts";
 import styles from "./entry-chat.module.css";
 
-export function LandingChat() {
+export function LandingChat({ compact = false }: { compact?: boolean }) {
   const router = useRouter();
   const scope = useChatScope();
   const chatHydrated = useEntryHydrated();
@@ -39,7 +39,7 @@ export function LandingChat() {
       <p>사업하며 생긴 질문을 편하게 적어 주세요.</p>
     </div>
     <div className={styles.composerWrap}><EntryComposer embedded inputRef={input} value={ready ? draft : ""} onChange={setDraft} onSend={start} disabled={!ready} /></div>
-    <div className={styles.landingPrompts}><EntryPrompts disabled={!ready} onSelect={(text) => { setDraft(text); input.current?.focus(); }} /></div>
+    <div className={styles.landingPrompts}>{compact ? <details className={styles.promptDisclosure}><summary>질문 예시 보기</summary><EntryPrompts disabled={!ready} onSelect={(text) => { setDraft(text); input.current?.focus(); }} /></details> : <EntryPrompts disabled={!ready} onSelect={(text) => { setDraft(text); input.current?.focus(); }} />}</div>
     <p className={styles.disclosure}>{isPrototype ? "샘플 응답으로 상담 흐름을 체험합니다. 대화는 이 브라우저에 보관되며 실제 세무 판단을 제공하지 않습니다." : "AI가 세법 자료를 바탕으로 답변합니다. 대화는 이 브라우저에 보관되며, 최종 판단은 세무사와 확인해 주세요."}</p>
   </section>;
 }
