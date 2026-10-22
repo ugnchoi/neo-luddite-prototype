@@ -1,0 +1,21 @@
+{
+  "version": "v3",
+  "source_demo_sha256": "825a917d3a59a55e0490e2e5193d74b1d4575b5b141fbf61fc79f0a1da9d0102",
+  "files": {
+    "CrediGraph-presentation-v3.pdf": "35463bb6bd9ec1210516dda88965772bbf3560433d5263b75e8e1b3024ec9816",
+    "deck.js": "19bd83d05f89f821d5030b546256c4e3973bdd845c2e1258fa939287eccfea05",
+    "deck.css": "a10aa81f21320515cb1d2b111fb91a7ac0dd40d5c4dd67ff9e646aa7901a893f",
+    "index.html": "29c33263d00085409eb7a2de5db92290bb1aad02364e4981113821ed8f65a95a",
+    "assets/demo-v14.html": "a5d522144b0c00d86142c49e8118d17e2980765a71a39aea45135f79cca9e906",
+    "assets/PretendardVariable.woff2": "9599f12fd42fc0bce1cd50b47a0c022e108d7aa64dd0d1bb0ed44f3282d900b4",
+    "assets/agent.png": "5bde96313fe5113b22f8881716a2a0612da09521656e0ba1b6ac0fdfd78d7fa5",
+    "assets/choi-yujin-headshot.png": "cea28c23f19ddcb0db038ef998ec53e5208d60011102d89f0ce08adaa3a95b52",
+    "assets/lim-cheolho-headshot.png": "1624e19bc2ddf51c9c184f7b7d83bab395e84d8eb96344f8122e9b717c1d4c54",
+    "assets/teaching.png": "2e34624f1d3c335e8132b1f628ff2e87503522526a8051f6e08e55a60d0d5e89",
+    "assets/consultation.png": "65de7829a89a1d9a5cc4c20bd8ba9752dafac591bc7ca94bce66bfcf046221cd",
+    "assets/collective.png": "435d5da2e605f8362091b5b4531e55df601fc3a91782bfdf1f4e79d1637a000d",
+    "assets/film-bridge.js": "71e1531ad47a6c24dcb169c7e3f1e1af828b8a5bde83a60a4cc4b27ef8fb5ddb",
+    "assets/jung-joongeun-headshot.png": "745bc437f159c12d5c5d06e247e29b76b70fac9d751f958672f64eb4ca7338bc",
+    "assets/vendor/gsap.min.js": "96c01b81f44a3290e2b4532f55e2c9534b2adc43273a19f3756b2cb41f0fd0b6"
+  }
+}

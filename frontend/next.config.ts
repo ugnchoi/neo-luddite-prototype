@@ -4,10 +4,17 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   // Unlisted review URL. The standalone player stays outside the app shell.
   async rewrites() {
-    return [{ source: "/demo-video", destination: "/demo-video/index.html" }];
+    return [
+      { source: "/demo-video", destination: "/demo-video/index.html" },
+      { source: "/presentation", destination: "/presentation/index.html" },
+    ];
   },
   async headers() {
     return [
+      {
+        source: "/presentation/:path*",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow, noarchive" }],
+      },
       {
         source: "/demo-video/:path*",
         headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow, noarchive" }],
