@@ -1,8 +1,8 @@
 {
-  "source": "CrediGraph-Booth-v03.html",
-  "sourceSha256": "d0d8866ac71b15fd4cf11c668c5af7135660a01245caaa02a42364d7f6da3913",
+  "source": "CrediGraph-Booth-v04.html",
+  "sourceSha256": "e8265936cc12967fc70c5d17aae9090d412cfd4b26c8dd82eeb1479dcf9762b2",
   "entry": "booth.html",
-  "entrySha256": "74316225ee813ba1c0a230bc2a9e719f1b854c12875bd36aa6047a27bf236f83",
+  "entrySha256": "52b8a6ec2f4fc836d5a02136842b0cfafc502998975c451da1ae465085af3c07",
   "durationSeconds": 40,
   "width": 1080,
   "height": 1920,
@@ -23,11 +23,11 @@
       "source": "booth/v01/ui-referral.mp4"
     },
     {
-      "file": "assets/1429b9abc0d659be13a9.mp3",
+      "file": "assets/8650893ce2cc42a6ae65.mp3",
       "mime": "audio/mpeg",
-      "bytes": 961767,
-      "sha256": "1429b9abc0d659be13a95c60486d722c2528fc08f4dd638478a6514639b7ce37",
-      "source": "booth/v03/film-mix.mp3"
+      "bytes": 1282341,
+      "sha256": "8650893ce2cc42a6ae6543ab95b6a8edb193f9c9b9ea57f91a12173338f64b46",
+      "source": "booth/v04/film-mix.mp3"
     },
     {
       "file": "assets/edd329a94d672524a538.png",
@@ -79,10 +79,10 @@
       "source": "human-imprint/people/yun-seojin-ai.png"
     },
     {
-      "file": "assets/c82099a5a988da5bf996.js",
+      "file": "assets/35a3fdc5f3be8871f991.js",
       "mime": "text/javascript",
-      "bytes": 507394,
-      "sha256": "c82099a5a988da5bf9965664a4f79de421e73ed89e80c19962b538ea9649cbe6",
+      "bytes": 507582,
+      "sha256": "35a3fdc5f3be8871f991038c6bef6b14a86de40051ddedf5ba1bff50448cc9b7",
       "source": "booth-player.js"
     }
   ]
