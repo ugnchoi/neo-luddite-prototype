@@ -73,4 +73,23 @@ Browser emulation does not establish physical-device keyboard behavior, assistiv
 | Public composition and shared About styles | [page](../frontend/app/page.tsx), [entry styles](../frontend/app/entry.module.css), [About](../frontend/app/about/page.tsx) |
 | Continuous consultation record and scoped motion | [story component](../frontend/components/marketing/consultation-story.tsx), [story styles](../frontend/components/marketing/consultation-story.module.css) |
 | Hero entry variant and retained guest mechanics | [landing chat](../frontend/components/chat/landing-chat.tsx), [entry styles](../frontend/components/chat/entry-chat.module.css), [composer](../frontend/components/chat/entry-composer.tsx) |
+| Hero shader grid and fallbacks | [component](../frontend/components/marketing/hero-grid/hero-grid.tsx), [renderer](../frontend/components/marketing/hero-grid/renderer.ts), [shaders](../frontend/components/marketing/hero-grid/shaders.ts), [styles](../frontend/components/marketing/hero-grid/hero-grid.module.css) |
 | Incumbent foundations | [root layout](../frontend/app/layout.tsx), [Luminous tokens](../frontend/components/design-system/luminous.css), [design system](../DESIGN.md), [sidecar](../.impeccable/design.json) |
+
+## 2026-10-28 hero shader-grid addition
+
+The requested subtle moving grid sits behind the hero only. Fixed dot anchors carry slowly changing size and opacity from a domain-warped gradient-noise contour field. The existing `--ds-imprint` supplies its ink in both themes; a center fade keeps the headline and composer quiet, with lower opacity on mobile. The decoration is hidden from assistive technology and does not intercept pointer input. Copy, guest-entry mechanics, the consultation story, global design tokens, and identity remain unchanged. No library or raster asset was added.
+
+The contour helper was adapted from the current local `/home/ugnchoi/projects/ripple-field/src/grid/contour.mjs`, verified on 2026-10-28 with SHA-256 `16c95fe65e3046b44cb04bebef4ee60a37d2c38c785d1d1b03cbc171e3aecf73`. That reference file was untracked when inspected; this records a local source snapshot, not Git HEAD provenance. The hero adapts its contour parameters and uses only the contour value to change dot size and ink; anchor positions stay fixed.
+
+The WebGL2 renderer uses one static point buffer per layout, with animation draws capped at 30 per second, at most 24,000 points, a 2,000,000-pixel drawing buffer, and DPR capped at 1.5. A 44px pause/play control has a Korean accessible label and visible keyboard focus. Animation stops while paused, offscreen, or in a hidden tab. Reduced motion and unavailable WebGL retain a static CSS grid; forced colors and print hide the decoration. Context loss releases the renderer and restores the fallback, context restoration reinstalls it, and unmount disconnects observers/listeners and releases rendering resources.
+
+Supplied implementation/browser validation for this addition:
+
+- All 113 tests, focused ESLint, the final production build, and `git diff --check` passed; the detector returned `[]`.
+- Actual draw counters froze during pause, offscreen, and hidden-tab checks. Animation time advanced over three seconds with one static buffer upload. Forced context loss/restoration and About unmount/Back passed.
+- At a 3840 × 2160 viewport, the allocated canvas was 1925 × 1038 (1,998,150 pixels) with 23,730 points. Initial reduced-motion mode made zero WebGL requests; the no-WebGL fallback remained usable.
+- Mobile example selection → chat → sample reply passed. The root browser validation reported zero errors and zero warnings.
+- Independent visual review returned `Pass` across seven final captures, with no material issues in desktop, 320px/390px mobile, dark-theme readability, pause-control placement, or static fallbacks.
+
+Final local, ignored screenshots are under [`output/playwright/hero-grid/`](../output/playwright/hero-grid/): `desktop.png`, `desktop-later.png`, `mobile.png`, `mobile-320.png`, `dark.png`, `reduced.png`, `no-webgl.png`, and `reduced-mobile.png`. These are browser verification artifacts; the draw limits and browser results do not establish hardware frame rates or live production deployment. This documentation pass checked source and the supplied evidence without repeating browser or build validation.

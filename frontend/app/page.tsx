@@ -5,6 +5,7 @@ import { ThemeToggle } from "@/components/design-system/theme-toggle";
 import { PublicAccountNav } from "@/components/layout/public-account-nav";
 import { LandingChat } from "@/components/chat/landing-chat";
 import { ConsultationStory } from "@/components/marketing/consultation-story";
+import { HeroGrid } from "@/components/marketing/hero-grid/hero-grid";
 import { ImprintMark } from "@/components/design-system/imprint";
 import { isPrototype } from "@/lib/data-mode";
 import styles from "./entry.module.css";
@@ -23,6 +24,7 @@ export default function Home() {
       <div className={styles.account}><PublicAccountNav /><ThemeToggle /></div>
     </header>
     <main id="main" tabIndex={-1}>
+      <div className={styles.heroSurface}>
       <section className={styles.hero} aria-labelledby="hero-title">
         <div className={styles.story}>
           <h1 id="hero-title">AI와 시작하고,<br /><span>세무사와 이어가세요.</span></h1>
@@ -33,6 +35,8 @@ export default function Home() {
         </div>
         <div className={styles.heroFoot}><Link href="#how-it-works">하나의 질문이 상담이 되기까지 <ArrowDown size={16} aria-hidden="true" /></Link></div>
       </section>
+      <HeroGrid />
+      </div>
 
       <ConsultationStory />
 
