@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -92,4 +92,24 @@ const manifest = {
   assets: [...assets.values()].map(({ file, mime, bytes, sha256, sources }) => ({ file, mime, bytes, sha256, sources })),
 };
 writeFileSync(path.join(output, "manifest.json"), JSON.stringify(manifest, null, 2) + "\n");
+
+// The deck uses the same approved player and media, with only its playback
+// bridge added. Refresh this stable entrypoint on every film import.
+const presentation = path.join(root, "public/presentation");
+const deckManifestPath = path.join(presentation, "manifest.json");
+if (existsSync(deckManifestPath)) {
+  assert(existsSync(path.join(presentation, "assets/film-bridge.js")), "Missing deck playback bridge");
+  const deckHtml = html.replace("</body>", '<script src="/presentation/assets/film-bridge.js"></script></body>');
+  assert.notEqual(deckHtml, html, "Expected a film body for the playback bridge");
+  writeFileSync(path.join(presentation, "assets/demo.html"), deckHtml);
+  const deckManifest = JSON.parse(readFileSync(deckManifestPath, "utf8"));
+  deckManifest.source_demo = manifest.source;
+  deckManifest.source_demo_sha256 = manifest.sourceSha256;
+  deckManifest.audio = manifest.assets.filter(asset => asset.mime.startsWith("audio/"));
+  deckManifest.files["assets/demo.html"] = digest(deckHtml);
+  for (const file of Object.keys(deckManifest.files)) {
+    deckManifest.files[file] = digest(readFileSync(path.join(presentation, file)));
+  }
+  writeFileSync(deckManifestPath, JSON.stringify(deckManifest, null, 2) + "\n");
+}
 console.log(JSON.stringify({ output, htmlBytes: Buffer.byteLength(html), assetFiles: assets.size, assetBytes: [...assets.values()].reduce((n, a) => n + a.bytes, 0), sourceSha256: manifest.sourceSha256 }, null, 2));
