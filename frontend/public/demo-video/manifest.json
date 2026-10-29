@@ -1,12 +1,12 @@
 {
-  "source": "Human-Imprint-v15.html",
-  "sourceSha256": "419c9378cae85b7c78f9afbcac0d75c6245e3c6c4104ba0f1bb4e30b56d5b1d7",
-  "guideSourceSha256": "d65535a812a4d07c13c4dc192faba93d6eb59140e71adce79a6ef8a590a3b9fb",
+  "source": "Human-Imprint-v16.html",
+  "sourceSha256": "f32f334235a3cacfb22a832c99b8761b282ff58b57e41758913ae5467b20741d",
+  "guideSourceSha256": "7a56c764dd5103d83efd2a3373693e4b1cb7fcfac70ae5fa7ee368f3f81063a7",
   "documents": [
     {
       "file": "index.html",
       "bytes": 3809,
-      "sha256": "501144db77ed25df37a83810cb03916ebb5f3821824fe0e9bb6a03cbaddb4d24"
+      "sha256": "d092e805d9f591341cbf1c3c504eae702b7404877649b4c5b2548af7bee7edf1"
     },
     {
       "file": "Design-Bridge.html",
@@ -35,12 +35,12 @@
       ]
     },
     {
-      "file": "assets/0e0afe2c60d86be8143d.mp3",
+      "file": "assets/978ece3dae1978616cb0.mp3",
       "mime": "audio/mpeg",
-      "bytes": 7682132,
-      "sha256": "0e0afe2c60d86be8143dcd2166a821dbe6fef7e994fa4a14d9513849b10bbbe1",
+      "bytes": 7681580,
+      "sha256": "978ece3dae1978616cb0d7538f0c7709591f3f06e003f019a94eb44379d32c86",
       "sources": [
-        "human-imprint/film-mix-v15.mp3"
+        "human-imprint/film-mix-v16.mp3"
       ]
     },
     {
@@ -134,10 +134,10 @@
       ]
     },
     {
-      "file": "assets/f3d2271362fc86ac46bb.js",
+      "file": "assets/47ba01a3863b75dd2cd1.js",
       "mime": "text/javascript",
-      "bytes": 556358,
-      "sha256": "f3d2271362fc86ac46bb5a442a82cc59066ff0bbc8b9f8c43cb5318f6b075b36",
+      "bytes": 565234,
+      "sha256": "47ba01a3863b75dd2cd11b6d543507ff3e7079a69c851e66f001fbca3c7a6c40",
       "sources": [
         "approved-player.js"
       ]
