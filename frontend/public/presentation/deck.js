@@ -21,7 +21,7 @@
   const frame=$('demo-frame'), film=frame.closest('.slide');
   let filmReady=false, started=false, playing=false, filmPosition=1200, pendingPlay=false;
   const command=(command,extra={})=>frame.contentWindow?.postMessage({channel:'credigraph-film',command,...extra},'*');
-  const loadFilm=()=>{if(!frame.getAttribute('src'))frame.src='assets/demo-v14.html?clean=1&embed=1&frame=1200';};
+  const loadFilm=()=>{if(!frame.getAttribute('src'))frame.src='assets/demo.html?clean=1&embed=1&frame=1200';};
   const startFilm=()=>{loadFilm();pendingPlay=true;$('film-start').textContent='시연 준비 중…';if(filmReady)playFilm();};
   const playFilm=()=>{pendingPlay=false;started=true;playing=true;film.classList.add('started');command('play');$('film-toggle').textContent='일시정지';};
   const pauseFilm=()=>{pendingPlay=false;playing=false;command('pause');$('film-toggle').textContent='재생';};

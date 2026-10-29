@@ -1,11 +1,11 @@
 {
   "version": "v3",
-  "source_demo_sha256": "825a917d3a59a55e0490e2e5193d74b1d4575b5b141fbf61fc79f0a1da9d0102",
+  "source_demo_sha256": "f32f334235a3cacfb22a832c99b8761b282ff58b57e41758913ae5467b20741d",
   "files": {
     "CrediGraph-presentation-v3.pdf": "dd096cf4965055e5571e3cf93efd79a083aa4970273fc6b6cb7ef875269b0e11",
-    "deck.js": "19bd83d05f89f821d5030b546256c4e3973bdd845c2e1258fa939287eccfea05",
+    "deck.js": "b17e2dc9129905e685d9d4f8a6f1bdc05a96997337666de56af8dbb4f7aabccd",
     "deck.css": "a10aa81f21320515cb1d2b111fb91a7ac0dd40d5c4dd67ff9e646aa7901a893f",
-    "index.html": "97007344df943858bc5bc43343cb8445f848093c3484546d0f9f2187cdfc03ff",
+    "index.html": "754e4ef2f41b7ac67e7a4a05c0dbc732a7f601ca3a181f3f5d5c9cb734973714",
     "assets/demo-v14.html": "a5d522144b0c00d86142c49e8118d17e2980765a71a39aea45135f79cca9e906",
     "assets/PretendardVariable.woff2": "9599f12fd42fc0bce1cd50b47a0c022e108d7aa64dd0d1bb0ed44f3282d900b4",
     "assets/agent.png": "5bde96313fe5113b22f8881716a2a0612da09521656e0ba1b6ac0fdfd78d7fa5",
@@ -16,6 +16,19 @@
     "assets/collective.png": "435d5da2e605f8362091b5b4531e55df601fc3a91782bfdf1f4e79d1637a000d",
     "assets/film-bridge.js": "71e1531ad47a6c24dcb169c7e3f1e1af828b8a5bde83a60a4cc4b27ef8fb5ddb",
     "assets/jung-joongeun-headshot.png": "745bc437f159c12d5c5d06e247e29b76b70fac9d751f958672f64eb4ca7338bc",
-    "assets/vendor/gsap.min.js": "96c01b81f44a3290e2b4532f55e2c9534b2adc43273a19f3756b2cb41f0fd0b6"
-  }
+    "assets/vendor/gsap.min.js": "96c01b81f44a3290e2b4532f55e2c9534b2adc43273a19f3756b2cb41f0fd0b6",
+    "assets/demo.html": "9fa88b039a4d6f7c026a88be39bb5a21928b472c0a8368b3f9e80209978c3a6a"
+  },
+  "source_demo": "Human-Imprint-v16.html",
+  "audio": [
+    {
+      "file": "assets/978ece3dae1978616cb0.mp3",
+      "mime": "audio/mpeg",
+      "bytes": 7681580,
+      "sha256": "978ece3dae1978616cb0d7538f0c7709591f3f06e003f019a94eb44379d32c86",
+      "sources": [
+        "human-imprint/film-mix-v16.mp3"
+      ]
+    }
+  ]
 }
