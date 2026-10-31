@@ -104,7 +104,7 @@ export function createGridRenderer(canvas: HTMLCanvasElement): GridRenderer | nu
     canvas.height = Math.max(1, Math.floor(height * dpr));
     gl.viewport(0, 0, canvas.width, canvas.height);
     // Bound work on large displays without increasing the moving-dot size.
-    const pitch = Math.max(8, Math.sqrt(width * height / 24000));
+    const pitch = Math.max(7, Math.sqrt(width * height / 24000));
     const columns = Math.floor(width / pitch);
     const rows = Math.floor(height / pitch);
     count = columns * rows;

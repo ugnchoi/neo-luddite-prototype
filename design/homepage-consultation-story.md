@@ -6,7 +6,7 @@ This document records the local composition of `/` and its immediate guest entry
 
 ## Composition
 
-The first viewport pairs the two-line invitation “세금 고민, / 편하게 물어보세요.” with “세무사가 함께 만들고 다듬는, / 사업자를 위한 AI 세무상담.” A broad question field is the main action, followed by one editable vehicle-cost example and the browser-storage note. The relationship is professionals building and refining the AI; it does not imply that a professional approves each answer. Open, nested imprint contours appear through the fixed dot grid behind the hero. The text-labeled submit control, login, service introduction, and theme control remain visible controls.
+The first viewport pairs the two-line invitation “세금 고민, / 편하게 물어보세요.” with “세무사가 함께 만들고 다듬는, / 사업자를 위한 AI 세무상담.” A broad question field is the main action, followed by one editable vehicle-cost example and the browser-storage note. The relationship is professionals building and refining the AI; it does not imply that a professional approves each answer. Flowing contour patterns appear through a denser fixed dot grid on a faint teal hero background. Public headers and footers pair the Imprint mark with the brand name Credigraph. The text-labeled submit control, login, service introduction, and theme control remain visible controls.
 
 The story develops one consultation record through three stages: the owner's question, context organized into a consultation memo, and a prepared question to continue with a tax professional. The same question stays in the same frame while information accumulates. The memo distinguishes known facts, an open question, and documents to prepare. The record uses a general vehicle-cost question and is labeled as an illustrative case, with its limits stated beneath it. Clinic specialization and sample-consultation labels have been removed from the public homepage, landing entry, story, and About copy.
 
@@ -94,7 +94,7 @@ Supplied implementation/browser validation for this addition:
 
 Final local, ignored screenshots are under [`output/playwright/hero-grid/`](../output/playwright/hero-grid/): `desktop.png`, `desktop-later.png`, `mobile.png`, `mobile-320.png`, `dark.png`, `reduced.png`, `no-webgl.png`, and `reduced-mobile.png`. These are browser verification artifacts; the draw limits and browser results do not establish hardware frame rates or live production deployment. This documentation pass checked source and the supplied evidence without repeating browser or build validation.
 
-## 2026-10-31 hero imprint and copy refinement
+## 2026-10-31 hero imprint and copy refinement (pattern superseded below)
 
 The hero now reads “세금 고민, / 편하게 물어보세요.” with the support “세무사가 함께 만들고 다듬는, / 사업자를 위한 AI 세무상담.” Homepage and About metadata and professional-collaboration copy follow the same relationship: experts help build and refine the AI, without implying individual approval or a guarantee for every answer. The accepted three-stage consultation story remains intact. Its owner reply now describes work and family travel, and its caption describes a general vehicle-cost example. Public clinic and sample-consultation labels are removed; the hero retains only the storage note, while footer/About retain the prepared-response and runtime limits described above.
 
@@ -105,3 +105,14 @@ Renderer budgets and lifecycle behavior are unchanged: one static point buffer p
 Verification on the final 2026-10-31 source: all 113 tests, focused ESLint, production build, and `git diff --check` passed; the design detector returned `[]`. Production-browser probes confirmed changing animation time with one static point-buffer upload, pause/offscreen/hidden-tab suspension, context restoration, About/Back cleanup, and mobile guest question submission through the prepared reply. The 4K drawing buffer remained 1,998,150 pixels with 23,730 points. Reduced motion made zero WebGL requests; unavailable WebGL retained a usable form. Public homepage/About checks found no clinic/sample-consultation wording, and the browser console reported zero errors and warnings.
 
 Final captures are under [`output/playwright/imprint-hero/final/`](../output/playwright/imprint-hero/final/), including desktop time samples, dark theme, 390px and 320px mobile, reduced motion, and no-WebGL fallback. Independent visual review returned `Pass` with no material issues in the requested brand, copy, and readability refinement. Still captures establish shape and layout, while browser probes establish animation and lifecycle behavior; neither establishes physical-device frame rates or live deployment.
+
+
+## 2026-10-31 contour restoration, density, tint, and brand name
+
+The user's follow-up restores the original flowing, domain-warped noise pattern from `5741a88`. The shader differs from that original only in contour levels, increased from 7 to 8. Grid spacing decreases from 8px to 7px for both WebGL and the static fallback; the 24,000-point and 2,000,000-pixel limits still bound larger viewports. Original timing, center attenuation, theme ink, mobile contrast, and lifecycle controls are retained.
+
+A 6% blend of the existing `--ds-imprint` ink adds a faint teal tint behind the hero, fading at its top and bottom. The composer keeps its opaque paper surface. The new hero invitation and expert-building/refining copy remain unchanged. Homepage, About, and the shared public header now show **Credigraph** beside the mark; matching public footers and page metadata use the same name. No guest-entry or account behavior changes.
+
+Verification: focused ESLint, production build, `git diff --check`, and the design detector (`[]`) passed. Browser checks confirmed animation with a static position buffer, pause/offscreen/hidden suspension, context restoration, About/Back cleanup, and mobile question submission. The denser 1440 × 900 view rendered 23,780 points; the 4K case remained within 23,730 points and 1,998,150 pixels. Reduced-motion and no-WebGL fallbacks remained usable. At 320px, homepage/About/login showed Credigraph beside the mark with no page overflow. The browser console recorded zero errors or warnings. Independent visual review returned `Pass` across desktop, dark, 390px/320px mobile, and static fallback captures. These browser results do not establish physical-device frame rates.
+
+Current local captures are under [`output/playwright/contour-tint/`](../output/playwright/contour-tint/). The preceding imprint-generator captures document the superseded pattern.

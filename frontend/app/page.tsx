@@ -11,7 +11,7 @@ import { isPrototype } from "@/lib/data-mode";
 import styles from "./entry.module.css";
 
 export const metadata: Metadata = {
-  title: "세무상담 — 세무사가 함께 만들고 다듬는 AI 세무상담",
+  title: "Credigraph — 세무사가 함께 만들고 다듬는 AI 세무상담",
   description: "세무사가 함께 만들고 다듬는, 사업자를 위한 AI 세무상담. 일상 속 세금 고민을 편하게 질문하고 상담 흐름을 체험해 보세요.",
 };
 
@@ -19,7 +19,7 @@ export default function Home() {
   return <div className={styles.page}>
     <Link href="#main" className={styles.skipLink}>본문으로 이동</Link>
     <header className={`${styles.header} ${styles.homeHeader}`}>
-      <Link href="/" className={styles.brand} aria-label="세무상담 홈"><span className={styles.brandMark}><ImprintMark /></span>세무상담</Link>
+      <Link href="/" className={styles.brand} aria-label="Credigraph 홈"><span className={styles.brandMark}><ImprintMark /></span>Credigraph</Link>
       <nav className={styles.navigation} aria-label="서비스 안내"><Link href="/about">서비스 소개</Link></nav>
       <div className={styles.account}><PublicAccountNav /><ThemeToggle /></div>
     </header>
@@ -51,7 +51,7 @@ export default function Home() {
       </section>
     </main>
     <footer className={styles.footer}>
-      <div><Link href="/" className={styles.brand}><ImprintMark size={26} />세무상담</Link><p><Link href="/about">서비스 소개 · 이용 안내</Link></p></div>
+      <div><Link href="/" className={styles.brand}><ImprintMark size={26} />Credigraph</Link><p><Link href="/about">서비스 소개 · 이용 안내</Link></p></div>
       <p>{isPrototype ? <>현재 체험 버전에서는 미리 준비된 응답을 보여드립니다.<br />실제 AI 응답·세무 판단·상담 접수는 제공하지 않습니다.</> : "최종 세무 판단은 세무사와 확인해 주세요."}</p>
       <Link href="#main">맨 위로 <ArrowRight size={15} aria-hidden="true" /></Link>
     </footer>
