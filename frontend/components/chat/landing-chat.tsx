@@ -37,12 +37,12 @@ export function LandingChat({ compact = false, variant = "panel" }: { compact?: 
     <button className={styles.heroExample} type="button" disabled={!ready} onClick={() => { setDraft(exampleQuestion); input.current?.focus(); }} aria-label={`예시 질문 넣기: ${exampleQuestion}`}>
       <span>질문 예시</span><span>{exampleQuestion}</span><ArrowUpLeft size={17} aria-hidden="true" />
     </button>
-    <p className={styles.heroDisclosure}>{isPrototype ? <><strong>샘플 상담 체험</strong><span>병의원 사례 기반입니다. 실제 세무 판단·상담 접수는 제공하지 않으며,<br className={styles.heroDisclosureBreak} /> 대화는 이 브라우저에 저장됩니다.</span></> : <><span>AI가 세법 자료를 바탕으로 답변합니다. 최종 판단은 세무사와 확인해 주세요.</span><span>대화는 이 브라우저에 저장됩니다.</span></>}</p>
+    <p className={styles.heroDisclosure}><span>대화는 이 브라우저에 저장됩니다.</span></p>
   </section>;
   return <section id="consultation" tabIndex={-1} className={`${styles.panel} ${styles.landingPanel}`} aria-label="바로 시작하는 세무 상담">
     <header className={styles.panelHeader}>
       <div className={styles.panelIdentity}><TaxAgentAvatar size="small" /><span>첫 질문부터, 함께</span></div>
-      <span className={styles.sampleLabel}>{isPrototype ? "병의원 상담 예시" : "병의원 상담"}</span>
+      <span className={styles.sampleLabel}>{isPrototype ? "상담 체험" : "세무상담"}</span>
     </header>
     <div className={styles.intro}>
       <h2>어떤 일이 있으셨나요?</h2>
@@ -50,6 +50,6 @@ export function LandingChat({ compact = false, variant = "panel" }: { compact?: 
     </div>
     <div className={styles.composerWrap}><EntryComposer embedded inputRef={input} value={ready ? draft : ""} onChange={setDraft} onSend={start} disabled={!ready} /></div>
     <div className={styles.landingPrompts}>{compact ? <details className={styles.promptDisclosure}><summary>질문 예시 보기</summary><EntryPrompts disabled={!ready} onSelect={(text) => { setDraft(text); input.current?.focus(); }} /></details> : <EntryPrompts disabled={!ready} onSelect={(text) => { setDraft(text); input.current?.focus(); }} />}</div>
-    <p className={styles.disclosure}>{isPrototype ? "샘플 응답으로 상담 흐름을 체험합니다. 대화는 이 브라우저에 보관되며 실제 세무 판단을 제공하지 않습니다." : "AI가 세법 자료를 바탕으로 답변합니다. 대화는 이 브라우저에 보관되며, 최종 판단은 세무사와 확인해 주세요."}</p>
+    <p className={styles.disclosure}>{isPrototype ? "미리 준비된 응답으로 상담 흐름을 체험합니다. 대화는 이 브라우저에 보관되며 실제 세무 판단을 제공하지 않습니다." : "AI가 세법 자료를 바탕으로 답변합니다. 대화는 이 브라우저에 보관되며, 최종 판단은 세무사와 확인해 주세요."}</p>
   </section>;
 }

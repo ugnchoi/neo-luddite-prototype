@@ -1,5 +1,5 @@
-// Adapted from ripple-field/src/grid/contour.mjs (local source, 2026-10-28).
-// Fixed anchors; the noise changes only dot size and ink. No click simulation.
+// Imprint's open, nested contours, sampled on the existing fixed dot lattice.
+// Gradient-noise helper retained from ripple-field/src/grid/contour.mjs (2026-10-28).
 export const vertexShader = `#version 300 es
 precision highp float;
 in vec2 aPosition;
@@ -8,16 +8,6 @@ uniform float uTime;
 uniform float uDpr;
 uniform float uMaxPointSize;
 out float vAlpha;
-#define A_TIME 0.6
-#define A_NOISE_F 1.5
-#define A_LEVELS 7.0
-#define A_LINE_W 12.0
-#define A_LINE_EDGE 0.25
-#define A_WARP_AMP 1.6
-#define A_WARP_F 0.55
-#define A_WARP_SP 0.23
-#define A_OCTAVES 2
-#define A_WARP_OCTAVES 2
 
 /* Per-corner gradient in [-1, 1]^2. From https://iquilezles.org/articles/gradientnoise/ */
 vec2 ambHash(vec2 x) {
@@ -27,9 +17,8 @@ vec2 ambHash(vec2 x) {
 }
 
 /*
- * Gradient noise: value in .x, analytic gradient in .yz. The derivative is what makes the
- * warped stack affordable in a vertex shader — a finite-difference gradient would cost three
- * full evaluations of the whole octave stack per vertex instead of one.
+ * Gradient noise: value in .x, analytic gradient in .yz. Its derivative keeps the
+ * deformed contour width consistent without additional noise evaluations.
  */
 vec3 ambNoised(vec2 p) {
   vec2 i = floor(p);
@@ -59,114 +48,38 @@ vec3 ambNoised(vec2 p) {
   );
 }
 
-/* Value-only noise for the warp field, where the gradient is never needed. */
-float ambNoise(vec2 p) {
-  vec2 i = floor(p);
-  vec2 f = fract(p);
-  vec2 u = f * f * f * (f * (f * 6.0 - 15.0) + 10.0);
+// A rounded core gives the strands their shared turns and straight runs.
+// Noise gently flexes that shape; the dot anchors themselves never move.
+float imprintSurface(vec2 q, float t, float worldPerPx) {
+  vec2 p = q - vec2(-0.55, -0.10);
+  vec2 d = abs(p) - vec2(0.42, 0.14);
+  vec2 outside = max(d, 0.0);
+  float distance = length(outside) + min(max(d.x, d.y), 0.0) - 0.28;
+  // Skip masked points, including the core where atan(0, 0) is undefined.
+  if (distance <= -0.04 || distance >= 1.17) return 0.0;
+  vec2 normal = sign(p) * outside / max(length(outside), 1e-5);
 
-  float va = dot(ambHash(i), f);
-  float vb = dot(ambHash(i + vec2(1.0, 0.0)), f - vec2(1.0, 0.0));
-  float vc = dot(ambHash(i + vec2(0.0, 1.0)), f - vec2(0.0, 1.0));
-  float vd = dot(ambHash(i + vec2(1.0, 1.0)), f - vec2(1.0, 1.0));
+  vec3 noise = ambNoised(p * 1.4 + vec2(137.0, 219.0) + vec2(0.18, -0.12) * t);
+  float breath = 0.65 * t + 1.7 * p.y;
+  float field = distance + 0.05 * noise.x + 0.025 * sin(breath);
+  vec2 gradient = normal + 0.07 * noise.yz + vec2(0.0, 0.0425 * cos(breath));
 
-  return va + u.x * (vb - va) + u.y * (vc - va) + u.x * u.y * (va - vb - vc + vd);
+  // A slow outward trace makes the motion visible without moving the page's grid.
+  const float spacing = 0.10;
+  float band = fract((field - 0.012 * t) / spacing);
+  float distPx = min(band, 1.0 - band) * spacing / max(length(gradient) * worldPerPx, 1e-4);
+  float line = 1.0 - smoothstep(2.5, 10.0, distPx);
+
+  // Expose only the outer strands, with the same open corner as the public mark.
+  float extent = smoothstep(-0.04, 0.02, distance) * (1.0 - smoothstep(1.0, 1.17, distance));
+  float opening = smoothstep(0.24, 0.38, abs(atan(p.y, p.x) + 0.55));
+  return line * extent * opening;
 }
-
-/* Value + gradient fBm. Octaves are rotated between steps so features never align to an axis. */
-vec3 ambFbmd(vec2 x) {
-  mat2 rot = mat2(0.8, 0.6, -0.6, 0.8);
-  mat2 rotI = mat2(0.8, -0.6, 0.6, 0.8);
-  mat2 m = mat2(1.0, 0.0, 0.0, 1.0);
-  float a = 0.0;
-  float b = 0.5;
-  vec2 d = vec2(0.0);
-  for (int i = 0; i < A_OCTAVES; i++) {
-    vec3 n = ambNoised(x);
-    a += b * n.x;
-    d += b * m * n.yz;
-    b *= 0.55;
-    x = 1.9 * rot * x;
-    m = 1.9 * rotI * m;
-  }
-  return vec3(a, d);
-}
-
-float ambFbm(vec2 x) {
-  mat2 rot = mat2(0.8, 0.6, -0.6, 0.8);
-  float a = 0.0;
-  float b = 0.5;
-  for (int i = 0; i < A_WARP_OCTAVES; i++) {
-    a += b * ambNoise(x);
-    b *= 0.55;
-    x = 1.9 * rot * x;
-  }
-  return a;
-}
-
-/*
- * Ambient surface: contour band in .x (0 off a line, 1 on one), height gradient in .yz.
- *
- * Domain-warped gradient noise (https://iquilezles.org/articles/warp/). The generator is the
- * whole point: summed directional sine waves are anisotropic, so their level sets are always
- * long parallel bands, however hard you warp them. Isotropic noise scatters its extrema across
- * the plane, so contours close into the rounded cells a water surface actually shows.
- *
- * What reaches the dots is not the height but its level sets, drawn at even intervals the way a
- * topographic map draws a hill. Mapping height straight to dot size fills every cell edge to edge
- * and reads as cloud; drawing distance-to-contour instead leaves the interiors empty and produces
- * closed, nested, interconnected loops — which is the line character this is after.
- *
- * One warp level, not two. A second level adds structure at frequencies finer than a 6px dot
- * lattice can resolve, so it would spend evaluations producing aliasing rather than shape.
- */
-vec3 ambientSurface(vec2 q, float t, float worldPerPx) {
-  // The lattice offset is load-bearing, not decoration. ambHash folds on x*y*(x+y), which
-  // collapses toward zero around the origin — and the origin is screen centre. Sampled in place
-  // the field goes slack across the middle of the viewport and only develops texture at the
-  // corners. Pushing the domain well away from zero keeps the gradients well distributed.
-  vec2 p = q * A_NOISE_F + vec2(137.0, 219.0);
-  vec2 drift = vec2(t * 0.11, t * 0.07) * A_WARP_SP * A_TIME;
-
-  // The two warp components travel in opposite directions, so cells reshape in place rather
-  // than sliding across the screen as one rigid pattern.
-  vec2 w = vec2(
-    ambFbm(p * A_WARP_F + drift),
-    ambFbm(p * A_WARP_F + vec2(5.2, 1.3) - drift * 0.83)
-  );
-
-  vec3 n = ambFbmd(p + A_WARP_AMP * w);
-
-  // Position within a contour band, folded about its midpoint to give distance to the nearest
-  // band edge. Unclamped on purpose: clamping height would flatten the outermost rings into a
-  // plateau, and a plateau has no gradient, so those lines would simply stop being drawn.
-  float u = n.x * A_LEVELS;
-  float f = fract(u);
-  float toLine = min(f, 1.0 - f);
-
-  // Dividing by the gradient turns that into a real screen distance, and is what holds the line
-  // to an even weight. Without it bands balloon wherever the field flattens, so the drawing pools
-  // into thick blots exactly where it should be at its thinnest. Near an extremum the gradient
-  // vanishes and the nearest contour genuinely is far away, so the line fades out instead of
-  // flooding the cell interior — the same reason a contour map leaves summits blank.
-  vec2 gradU = n.yz * (A_NOISE_F * A_LEVELS);
-  float distPx = toLine / max(length(gradU) * worldPerPx, 1e-4);
-
-  // Full strength across the core, then a short falloff, rather than a smoothstep from zero.
-  float line = 1.0 - smoothstep(A_LINE_W * A_LINE_EDGE, A_LINE_W, distPx);
-
-  // The returned gradient is of the smooth height, not of the contour field. The contour value is
-  // discontinuous at every band edge, so steering dot drift with it would tear the lattice along
-  // each line. The warp's Jacobian is left out; it only steers a sub-pixel drift, and the exact
-  // chain rule would cost two more fbm evaluations to correct a direction nobody can see.
-  return vec3(line, n.yz * A_NOISE_F);
-}
-
 
 void main() {
   vec2 uv = aPosition / uSize;
   vec2 q = (aPosition - uSize * 0.5) * 2.0 / uSize.y;
-  float line = ambientSurface(q, uTime, 2.0 / uSize.y).x;
+  float line = imprintSurface(q, uTime, 2.0 / uSize.y);
   float quiet = smoothstep(0.18, 0.7, length((uv - vec2(0.5, 0.44)) * vec2(1.8, 1.2)));
   vAlpha = (0.12 + 0.4 * line) * mix(0.12, 1.0, quiet);
   gl_PointSize = min((1.0 + 1.8 * line) * uDpr, uMaxPointSize);
