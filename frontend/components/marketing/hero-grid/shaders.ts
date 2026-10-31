@@ -1,5 +1,5 @@
 // Adapted from ripple-field/src/grid/contour.mjs (local source, 2026-10-28).
-// Fixed anchors; the noise changes only dot size and ink. No click simulation.
+// Fixed anchors; ambient noise and a mouse-driven ripple change only dot size and ink.
 export const vertexShader = `#version 300 es
 precision highp float;
 in vec2 aPosition;
@@ -7,8 +7,10 @@ uniform vec2 uSize;
 uniform float uTime;
 uniform float uDpr;
 uniform float uMaxPointSize;
+uniform vec2 uPointer;
+uniform float uPointerStrength;
 out float vAlpha;
-#define A_TIME 0.6
+#define A_TIME 1.35
 #define A_NOISE_F 1.5
 #define A_LEVELS 8.0
 #define A_LINE_W 12.0
@@ -166,10 +168,16 @@ vec3 ambientSurface(vec2 q, float t, float worldPerPx) {
 void main() {
   vec2 uv = aPosition / uSize;
   vec2 q = (aPosition - uSize * 0.5) * 2.0 / uSize.y;
+  // Bend the sampled field around the mouse without displacing any grid anchors.
+  vec2 delta = (aPosition - uPointer) * 2.0 / uSize.y;
+  float radius = length(delta);
+  float influence = exp(-dot(delta, delta) / 0.16) * uPointerStrength;
+  float ripple = sin(radius * 22.0 - uTime * 3.2);
+  q += delta / (radius + 0.15) * (0.09 * ripple * influence);
   float line = ambientSurface(q, uTime, 2.0 / uSize.y).x;
   float quiet = smoothstep(0.18, 0.7, length((uv - vec2(0.5, 0.44)) * vec2(1.8, 1.2)));
-  vAlpha = (0.12 + 0.4 * line) * mix(0.12, 1.0, quiet);
-  gl_PointSize = min((1.0 + 1.8 * line) * uDpr, uMaxPointSize);
+  vAlpha = (0.10 + 0.48 * line + 0.12 * influence) * mix(0.12, 1.0, quiet);
+  gl_PointSize = min((1.0 + 2.3 * line + 0.65 * influence) * uDpr, uMaxPointSize);
   gl_Position = vec4(uv.x * 2.0 - 1.0, 1.0 - uv.y * 2.0, 0.0, 1.0);
 }
 `;

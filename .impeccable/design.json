@@ -580,7 +580,7 @@
         "admin": "^/admin(?:/|$)",
         "customer": "all other pathnames"
       },
-      "themeAxis": "data-theme is independent of workspace; client role navigation preserves light/dark state; reload starts light",
+      "themeAxis": "data-theme is independent of workspace; fresh loads follow prefers-color-scheme before paint; live system changes apply until a session-local manual toggle; client role navigation preserves that choice; reload follows the system",
       "authorization": "presentation only; account authorization remains separate",
       "baseAliases": {
         "--ds-accent-soft": "var(--ds-mint)",

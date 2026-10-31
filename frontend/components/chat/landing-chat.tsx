@@ -14,6 +14,12 @@ import { EntryPrompts } from "./entry-prompts";
 import styles from "./entry-chat.module.css";
 
 const exampleQuestion = "리스한 차를 가족도 쓰는데, 비용처리가 될까요?";
+const heroPlaceholderQuestions = [
+  "업무용 차량 유지비도 비용처리할 수 있나요?",
+  "직원들 점심값은 경비로 처리할 수 있나요?",
+  "부가세 신고할 때 어떤 영수증을 챙겨야 하나요?",
+  "프리랜서에게 대금을 줄 때 원천징수는 어떻게 하나요?",
+] as const;
 
 export function LandingChat({ compact = false, variant = "panel" }: { compact?: boolean; variant?: "panel" | "hero" }) {
   const router = useRouter();
@@ -33,7 +39,7 @@ export function LandingChat({ compact = false, variant = "panel" }: { compact?: 
     router.push(chatHref(id));
   }
   if (variant === "hero") return <section id="consultation" tabIndex={-1} className={styles.heroChat} aria-label="로그인 없이 세무 질문 시작하기">
-    <EntryComposer embedded inputRef={input} value={ready ? draft : ""} onChange={setDraft} onSend={start} disabled={!ready} placeholder="궁금한 세무 고민을 적어 주세요." sendLabel="질문하기" />
+    <EntryComposer embedded inputRef={input} value={ready ? draft : ""} onChange={setDraft} onSend={start} disabled={!ready} placeholderExamples={heroPlaceholderQuestions} sendLabel="질문하기" />
     <button className={styles.heroExample} type="button" disabled={!ready} onClick={() => { setDraft(exampleQuestion); input.current?.focus(); }} aria-label={`예시 질문 넣기: ${exampleQuestion}`}>
       <span>질문 예시</span><span>{exampleQuestion}</span><ArrowUpLeft size={17} aria-hidden="true" />
     </button>
