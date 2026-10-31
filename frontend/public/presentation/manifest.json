@@ -1,6 +1,6 @@
 {
   "version": "v3",
-  "source_demo_sha256": "8a391dd2af83901a2d3e3f3c2e2844916afdb006bece9eaaa4d7dda8fc2e8795",
+  "source_demo_sha256": "3a433405572d575b65db49bea064167f317229858ab58bd4327f020079bfac8d",
   "files": {
     "CrediGraph-presentation-v3.pdf": "dd096cf4965055e5571e3cf93efd79a083aa4970273fc6b6cb7ef875269b0e11",
     "deck.js": "b17e2dc9129905e685d9d4f8a6f1bdc05a96997337666de56af8dbb4f7aabccd",
@@ -17,9 +17,9 @@
     "assets/film-bridge.js": "71e1531ad47a6c24dcb169c7e3f1e1af828b8a5bde83a60a4cc4b27ef8fb5ddb",
     "assets/jung-joongeun-headshot.png": "745bc437f159c12d5c5d06e247e29b76b70fac9d751f958672f64eb4ca7338bc",
     "assets/vendor/gsap.min.js": "96c01b81f44a3290e2b4532f55e2c9534b2adc43273a19f3756b2cb41f0fd0b6",
-    "assets/demo.html": "3f7491b9d80c1df629e3409ab2bd704a99154d81a0be76666c3b338c1e59e9f1"
+    "assets/demo.html": "57312c76e8dc3cc249e34bb993ebeedc6659b5b3ed8e5c8b1aec56421721a67f"
   },
-  "source_demo": "Human-Imprint-v16.html",
+  "source_demo": "Human-Imprint-v17.html",
   "audio": [
     {
       "file": "assets/978ece3dae1978616cb0.mp3",
