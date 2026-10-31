@@ -1,12 +1,12 @@
 {
-  "source": "Human-Imprint-v16.html",
-  "sourceSha256": "8a391dd2af83901a2d3e3f3c2e2844916afdb006bece9eaaa4d7dda8fc2e8795",
-  "guideSourceSha256": "7a56c764dd5103d83efd2a3373693e4b1cb7fcfac70ae5fa7ee368f3f81063a7",
+  "source": "Human-Imprint-v17.html",
+  "sourceSha256": "3a433405572d575b65db49bea064167f317229858ab58bd4327f020079bfac8d",
+  "guideSourceSha256": "efec0b8ec0998984c09231e56ff039b9bcb8bdce5f7660557545571b25d37287",
   "documents": [
     {
       "file": "index.html",
       "bytes": 3809,
-      "sha256": "3045ea6e5905bdc21972e9626ba3e052f36a7429a32121fba85bca2ea5fa2177"
+      "sha256": "0e4aaff3cc9f7c997b915fb733529fd98cfcff7a17efd1fcb3b3c28c01779eef"
     },
     {
       "file": "Design-Bridge.html",
@@ -134,10 +134,10 @@
       ]
     },
     {
-      "file": "assets/fb756cf143a541f53369.js",
+      "file": "assets/bd7e2e12717e5fe4408f.js",
       "mime": "text/javascript",
-      "bytes": 567854,
-      "sha256": "fb756cf143a541f53369896a73f63584b7829a6df6d9fb60cc580eef64e5453d",
+      "bytes": 569234,
+      "sha256": "bd7e2e12717e5fe4408f5fb33b6fb321d68d258b6be01fdbfcf2d80707997699",
       "sources": [
         "approved-player.js"
       ]
