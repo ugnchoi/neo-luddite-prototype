@@ -14,6 +14,7 @@ import { isPrototype, isEntryChatLive } from "@/lib/data-mode";
 import { Spinner } from "@/components/ui/spinner";
 import { EntryComposer } from "./entry-composer";
 import { EntryPrompts } from "./entry-prompts";
+import { SourceExpertDirectory } from "@/components/expert/source-expert-directory";
 import { EntryResponse } from "./entry-response";
 import styles from "./entry-chat.module.css";
 
@@ -80,7 +81,7 @@ export function LocalChatExperience({ conversationId }: { conversationId?: strin
   return <div className={`${styles.workspace} ${surface.surface}`}>
     <div className={styles.context}>
       <span>{isEntryChatLive ? "병의원 AI 상담" : "병의원 상담 예시"} · {session === "viewer" ? "내 상담" : isEntryChatLive ? "로그인 없이 이용" : "체험 대화"}</span>
-      {session === null && !(isPrototype && isEntryChatLive) ? <Link href={loginHref(returnTo)}>로그인하고 이 대화 이어가기</Link> : <span>이 브라우저에 보관됩니다</span>}
+      {session === null && !(isPrototype && isEntryChatLive) ? <Link href={loginHref(returnTo)}>로그인하고 이 대화 이어가기</Link> : isPrototype && isEntryChatLive ? <SourceExpertDirectory /> : <span>이 브라우저에 보관됩니다</span>}
     </div>
     <div ref={scroll} className={styles.transcript}>
       {conversation.messages.length === 0 ? <div className={styles.empty}>

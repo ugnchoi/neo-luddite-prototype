@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SourceExpertDirectory } from "@/components/expert/source-expert-directory";
 import Link from "next/link";
 import { ArrowDown, ArrowRight } from "lucide-react";
 import { ThemeToggle } from "@/components/design-system/theme-toggle";
@@ -32,6 +33,7 @@ export default function Home() {
         </div>
         <div className={styles.consultationStage}>
           <LandingChat variant="hero" />
+          {isPrototype && isEntryChatLive && <div className="mt-4"><SourceExpertDirectory /></div>}
         </div>
         <div className={styles.heroFoot}><Link href="#how-it-works">하나의 질문이 상담이 되기까지 <ArrowDown size={16} aria-hidden="true" /></Link></div>
       </section>
@@ -52,7 +54,7 @@ export default function Home() {
     </main>
     <footer className={styles.footer}>
       <div><Link href="/" className={styles.brand}><ImprintMark size={26} />Credigraph</Link><p><Link href="/about">서비스 소개 · 이용 안내</Link></p></div>
-      <p>{!isEntryChatLive ? <>현재 체험 버전에서는 미리 준비된 응답을 보여드립니다.<br />실제 AI 응답·세무 판단·상담 접수는 제공하지 않습니다.</> : isPrototype ? "AI 상담은 실제 답변을 제공합니다. 전문가 연결·로그인은 체험 기능이며, 대화는 이 브라우저에 보관됩니다." : "최종 세무 판단은 세무사와 확인해 주세요."}</p>
+      <p>{!isEntryChatLive ? <>현재 체험 버전에서는 미리 준비된 응답을 보여드립니다.<br />실제 AI 응답·세무 판단·상담 접수는 제공하지 않습니다.</> : isPrototype ? "AI 상담은 실제 답변을 제공합니다. 전문가 목록을 열람할 수 있으며, 상담 신청은 준비 중입니다. 로그인은 체험 기능이며, 대화는 이 브라우저에 보관됩니다." : "최종 세무 판단은 세무사와 확인해 주세요."}</p>
       <Link href="#main">맨 위로 <ArrowRight size={15} aria-hidden="true" /></Link>
     </footer>
   </div>;
