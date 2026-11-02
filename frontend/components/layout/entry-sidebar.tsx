@@ -62,7 +62,7 @@ export function EntrySidebar() {
         {session === "viewer" ? <SidebarMenu><SidebarMenuItem><SidebarMenuButton render={<Link href="/select" />} onClick={close}><Repeat2 /><span>업종 변경</span></SidebarMenuButton></SidebarMenuItem></SidebarMenu> : <WorkspaceLink onNavigate={close} />}
         <AccountSwitcher />
       </> : <>
-        <p className={styles.sidebarNote}>대화는 이 브라우저에 보관돼요.<br />{chatOnly ? "계정 로그인과 전문가 기능은 샘플 체험입니다." : "로그인하면 내 상담으로 이어집니다."}</p>
+        <p className={styles.sidebarNote}>대화는 이 브라우저에 보관돼요.<br />{chatOnly ? "전문가 목록을 볼 수 있어요. 로그인은 샘플 체험입니다." : "로그인하면 내 상담으로 이어집니다."}</p>
         <SidebarMenu><SidebarMenuItem><SidebarMenuButton render={<Link href={loginHref(returnTo)} />} onClick={close}><LogIn /><span>{chatOnly ? "체험 계정 둘러보기" : "로그인하고 이어가기"}</span></SidebarMenuButton></SidebarMenuItem></SidebarMenu>
       </>}
     </SidebarFooter>

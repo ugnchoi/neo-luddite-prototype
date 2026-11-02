@@ -33,19 +33,19 @@ export default function AboutPage() {
       </section>
       <section className={styles.aboutRow} aria-labelledby="professionals-title">
         <h2 id="professionals-title">세무 전문가와<br />함께 만듭니다.</h2>
-        <div><p>전문가의 경험과 사업자의 질문을 바탕으로 AI 세무상담을 만듭니다. 세무사가 사례와 상담 지식을 정리하고 검토하며, AI가 안내할 내용을 함께 다듬어 갑니다.</p><p>정리한 질문과 자료를 바탕으로 전문가와 직접 상담을 이어갈 수 있는 흐름도 함께 만들어 갑니다.</p>{isPrototype && <p className={styles.aboutNote}>현재 체험 화면의 전문가 프로필, 지식 검토와 연결 과정은 예시입니다. 실제 상담 접수나 전문가의 개별 검토를 제공하는 단계는 아닙니다.</p>}</div>
+        <div><p>전문가의 경험과 사업자의 질문을 바탕으로 AI 세무상담을 만듭니다. 세무사가 사례와 상담 지식을 정리하고 검토하며, AI가 안내할 내용을 함께 다듬어 갑니다.</p><p>정리한 질문과 자료를 바탕으로 전문가와 직접 상담을 이어갈 수 있는 흐름도 함께 만들어 갑니다.</p>{isPrototype && <p className={styles.aboutNote}>{isEntryChatLive ? "전문가 목록은 제공된 소개 자료를 바탕으로 표시합니다. 로그인 후 워크스페이스의 지식 검토와 연결 과정은 예시입니다." : "현재 체험 화면의 전문가 프로필, 지식 검토와 연결 과정은 예시입니다."} 실제 상담 접수나 전문가의 개별 검토를 제공하는 단계는 아닙니다.</p>}</div>
       </section>
       <section className={styles.aboutRow} aria-labelledby="journey-title">
         <h2 id="journey-title">첫 질문부터,<br />사람과의 상담까지.</h2>
         <ol className={styles.aboutJourney}>
           <li><h3>상황을 이야기합니다</h3><p>어려운 용어 대신 실제로 있었던 일을 적어 주세요. 첫 질문은 로그인 없이 시작할 수 있습니다.</p></li>
           <li><h3>질문과 자료를 정리합니다</h3><p>상황을 이해하는 데 필요한 사실과 확인할 자료를 대화로 짚어 봅니다.</p></li>
-          <li><h3>세무사와 상담을 이어갑니다</h3><p>정리한 맥락을 바탕으로 전문가와 직접 이야기하는 흐름입니다. {isPrototype ? "현재는 로그인 후 상담 신청 과정을 체험합니다." : "상담 신청에는 로그인이 필요합니다."}</p></li>
+          <li><h3>세무사와 상담을 이어갑니다</h3><p>정리한 맥락을 바탕으로 전문가와 직접 이야기하는 흐름입니다. {isPrototype ? "현재 실제 상담 신청은 준비 중이며, 체험 계정에서는 신청 과정을 살펴볼 수 있습니다." : "상담 신청에는 로그인이 필요합니다."}</p></li>
         </ol>
       </section>
       <section className={styles.aboutDemo} aria-labelledby="demo-title">
         <h2 id="demo-title">{isPrototype ? "지금 체험할 수 있는 것" : "이용 전 확인해 주세요"}</h2>
-        <p>{!isEntryChatLive ? "현재 체험 버전에서는 질문하기, 미리 준비된 응답 확인, 전문가 둘러보기, 상담 신청 과정을 체험할 수 있습니다. 실제 AI 응답이나 세무 판단, 실제 세무사 연결 및 상담 접수는 제공하지 않습니다." : isPrototype ? "AI 상담은 실제 답변을 제공합니다. 전문가 프로필·로그인·사례 학습·공유 승인·상담방은 샘플 체험입니다. 실제 세무사 연결이나 상담 접수는 제공하지 않습니다." : "AI 안내를 통해 질문과 자료를 정리할 수 있습니다. 개별 사안의 최종 세무 판단은 세무사와 확인해 주세요."}</p>
+        <p>{!isEntryChatLive ? "현재 체험 버전에서는 질문하기, 미리 준비된 응답 확인, 전문가 둘러보기, 상담 신청 과정을 체험할 수 있습니다. 실제 AI 응답이나 세무 판단, 실제 세무사 연결 및 상담 접수는 제공하지 않습니다." : isPrototype ? "AI 상담은 실제 답변을 제공합니다. 제공된 자료에 기반한 전문가 목록을 열람할 수 있습니다. 로그인·사례 학습·공유 승인·상담방은 샘플 체험입니다. 실제 세무사 연결이나 상담 접수는 제공하지 않습니다." : "AI 안내를 통해 질문과 자료를 정리할 수 있습니다. 개별 사안의 최종 세무 판단은 세무사와 확인해 주세요."}</p>
         <p>대화는 현재 브라우저에 보관됩니다. 다른 기기에서는 불러올 수 없으며, 브라우저 데이터를 지우면 사라집니다. 저장이 차단된 환경에서는 새로고침 후 유지되지 않을 수 있습니다. {isPrototype && "체험에는 실제 개인정보나 민감한 사업 자료 대신 가상의 상황을 사용해 주세요."}</p>
         <Link href="/#consultation" className={styles.primaryAction}>{!isEntryChatLive ? "로그인 없이 체험하기" : "로그인 없이 질문하기"} <ArrowRight size={18} aria-hidden="true" /></Link>
       </section>
