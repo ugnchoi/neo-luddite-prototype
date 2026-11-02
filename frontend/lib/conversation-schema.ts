@@ -143,5 +143,7 @@ export type Framework = (typeof FRAMEWORKS)[number];
 export type Segment = z.infer<typeof segmentSchema>;
 export type UiBlock = z.infer<typeof uiBlockSchema>;
 export type Message = z.infer<typeof messageSchema>;
+/** Validate rendering fields without stripping server continuation data, including nested fields. */
+export const wireMessageSchema = z.custom<Message>((value) => messageSchema.safeParse(value).success);
 export type StarterQuestion = z.infer<typeof starterQuestionSchema>;
 export type Conversation = z.infer<typeof conversationSchema>;

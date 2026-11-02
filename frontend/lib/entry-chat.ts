@@ -1,13 +1,14 @@
 import { createStore } from "zustand/vanilla";
 import { createJSONStorage, persist } from "zustand/middleware";
 import { z } from "zod";
-import { messageSchema, type Message } from "./conversation-schema";
+import { wireMessageSchema, type Message } from "./conversation-schema";
+import { ChatUnavailableError } from "./chat-unavailable";
 import { withSampleResponseUi } from "./sample-response";
 
 const conversationSchema = z.object({
   id: z.string(), scope: z.string(), occupation: z.literal("clinic"),
   createdAt: z.number(), updatedAt: z.number(), draft: z.string(),
-  messages: z.array(messageSchema),
+  messages: z.array(wireMessageSchema),
 });
 const savedSchema = z.object({ conversations: z.array(conversationSchema), landingDrafts: z.record(z.string(), z.string()) });
 export type EntryConversation = z.infer<typeof conversationSchema>;
@@ -119,7 +120,7 @@ export function createEntryChatStore(storage?: ChatStorage, namespace = "populat
           reply = await respond(conversation);
         } catch (error) {
           console.warn("[entry-chat] 응답 실패:", error);
-          set((state) => ({ pending: { ...state.pending, [id]: false }, errors: { ...state.errors, [id]: "답변을 받지 못했어요. 질문은 보관되어 있습니다." } }));
+          set((state) => ({ pending: { ...state.pending, [id]: false }, errors: { ...state.errors, [id]: error instanceof ChatUnavailableError ? error.message : "답변을 받지 못했어요. 질문은 보관되어 있습니다." } }));
           return false;
         }
       } else {
@@ -133,7 +134,7 @@ export function createEntryChatStore(storage?: ChatStorage, namespace = "populat
       set((state) => ({
         conversations: state.conversations.map((item) => item.id === id && item.messages.at(-1)?.id === last.id
           // live 답(respond)은 서버 응답 그대로 — 샘플 카드(withSampleResponseUi)는 프로토타입 샘플 답에만.
-          ? { ...item, updatedAt: Date.now(), messages: [...item.messages, reply ? { ...reply, role: "assistant" as const, order: item.messages.length } : withSampleResponseUi(makeMessage("assistant", sampleResponse(item.messages), item.messages.length), messageText(item.messages[0]))] } : item),
+          ? { ...item, updatedAt: Date.now(), messages: [...item.messages, reply ?? withSampleResponseUi(makeMessage("assistant", sampleResponse(item.messages), item.messages.length), messageText(item.messages[0]))] } : item),
         pending: { ...state.pending, [id]: false },
       }));
       return true;

@@ -109,7 +109,7 @@ test("login returns to chat for every role and rejects foreign or unauthorized d
   assert.equal(routes.destinationAfterLogin(SEED_ADMIN), "/admin/dashboard");
 });
 
-test("live responder receives prior history and its reply keeps blocks with the next order", async () => {
+test("live responder receives prior history and keeps the server message order unchanged", async () => {
   const create = await storeFactory();
   const seen: { history: number; last: string }[] = [];
   const store = create(memoryStorage(), "populated", async (conversation) => {
@@ -122,7 +122,7 @@ test("live responder receives prior history and its reply keeps blocks with the 
   const [user, reply] = store.getState().conversations[0].messages;
   assert.deepEqual(seen, [{ history: 0, last: "차량 리스료가 궁금해요" }]);
   assert.equal(user.role, "user");
-  assert.equal(reply.order, 1, "server order is replaced by the local position");
+  assert.equal(reply.order, 99, "server fields must survive the next history request unchanged");
   assert.equal(reply.uiBlocks?.[0].kind, "expert_handoff");
 });
 

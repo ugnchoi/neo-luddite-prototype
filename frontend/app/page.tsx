@@ -7,7 +7,7 @@ import { LandingChat } from "@/components/chat/landing-chat";
 import { ConsultationStory } from "@/components/marketing/consultation-story";
 import { HeroGrid } from "@/components/marketing/hero-grid/hero-grid";
 import { ImprintMark } from "@/components/design-system/imprint";
-import { isPrototype } from "@/lib/data-mode";
+import { isPrototype, isEntryChatLive } from "@/lib/data-mode";
 import styles from "./entry.module.css";
 
 export const metadata: Metadata = {
@@ -47,12 +47,12 @@ export default function Home() {
 
       <section className={styles.closing} aria-labelledby="closing-title">
         <h2 id="closing-title">이제, 내 질문으로.</h2>
-        <Link className={styles.primaryAction} href="#consultation">{isPrototype ? "질문하고 체험하기" : "첫 질문 시작하기"} <ArrowRight size={18} aria-hidden="true" /></Link>
+        <Link className={styles.primaryAction} href="#consultation">{!isEntryChatLive ? "질문하고 체험하기" : "첫 질문 시작하기"} <ArrowRight size={18} aria-hidden="true" /></Link>
       </section>
     </main>
     <footer className={styles.footer}>
       <div><Link href="/" className={styles.brand}><ImprintMark size={26} />Credigraph</Link><p><Link href="/about">서비스 소개 · 이용 안내</Link></p></div>
-      <p>{isPrototype ? <>현재 체험 버전에서는 미리 준비된 응답을 보여드립니다.<br />실제 AI 응답·세무 판단·상담 접수는 제공하지 않습니다.</> : "최종 세무 판단은 세무사와 확인해 주세요."}</p>
+      <p>{!isEntryChatLive ? <>현재 체험 버전에서는 미리 준비된 응답을 보여드립니다.<br />실제 AI 응답·세무 판단·상담 접수는 제공하지 않습니다.</> : isPrototype ? "AI 상담은 실제 답변을 제공합니다. 전문가 연결·로그인은 체험 기능이며, 대화는 이 브라우저에 보관됩니다." : "최종 세무 판단은 세무사와 확인해 주세요."}</p>
       <Link href="#main">맨 위로 <ArrowRight size={15} aria-hidden="true" /></Link>
     </footer>
   </div>;
