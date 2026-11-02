@@ -1,0 +1,4 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "if [ \"$VERCEL_ENV\" = \"production\" ]; then NEXT_PUBLIC_DATA_MODE=prototype NEXT_PUBLIC_ENTRY_CHAT_MODE=live NEXT_PUBLIC_API_BASE=https://158-179-177-51.sslip.io npm run build; else npm run build; fi"
+}

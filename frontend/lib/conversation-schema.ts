@@ -19,6 +19,7 @@ export const SEGMENT_TYPES = [
   "conclusion", // 결론
   "caveat", // 단서/주의
   "follow_up", // 후속 질문/안내
+  "summary", // 답 전체의 요약 — 원본 API의 자문 답변에도 사용되며 판정(conclusion)과 구분
 ] as const;
 
 // 해석 프레임워크 — Goal3 태그
@@ -142,5 +143,7 @@ export type Framework = (typeof FRAMEWORKS)[number];
 export type Segment = z.infer<typeof segmentSchema>;
 export type UiBlock = z.infer<typeof uiBlockSchema>;
 export type Message = z.infer<typeof messageSchema>;
+/** Validate rendering fields without stripping server continuation data, including nested fields. */
+export const wireMessageSchema = z.custom<Message>((value) => messageSchema.safeParse(value).success);
 export type StarterQuestion = z.infer<typeof starterQuestionSchema>;
 export type Conversation = z.infer<typeof conversationSchema>;

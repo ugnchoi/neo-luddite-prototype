@@ -1,9 +1,10 @@
 "use client";
 
-import { getApiBase as apiBase, isPrototype } from "@/lib/data-mode";
+import { getChatApiBase as apiBase, isEntryChatLive } from "@/lib/data-mode";
 import { apiFetch } from "@/lib/api-fetch";
 import { z } from "zod";
-import { messageSchema, type Message } from "@/lib/conversation-schema";
+import { wireMessageSchema, type Message } from "@/lib/conversation-schema";
+import { ChatUnavailableError } from "@/lib/chat-unavailable";
 import type { OccupationKey } from "@/lib/occupations";
 
 /**
@@ -37,11 +38,12 @@ const chatMetaSchema = z
     ragCaseRefs: z.array(z.string()).default([]),
     ragHits: z.number().default(0),
     followUp: z.boolean().default(false),
+    congested: z.boolean().default(false),
   })
   .passthrough();
 
 const chatResponseSchema = z.object({
-  message: messageSchema,
+  message: wireMessageSchema,
   meta: chatMetaSchema,
 });
 
@@ -53,7 +55,7 @@ export interface ChatSendResult {
 }
 
 /** 원격 챗 활성 여부 — 토글 기본값 결정에 사용. */
-export const isRemoteChatConfigured = !isPrototype && Boolean(process.env.NEXT_PUBLIC_API_BASE);
+export const isRemoteChatConfigured = isEntryChatLive && Boolean(process.env.NEXT_PUBLIC_API_BASE);
 
 /**
  * `/api/chat` 로 한 턴을 전송하고 검증된 assistant Message + meta 를 돌려준다.
@@ -65,9 +67,10 @@ export async function send(input: ChatSendInput): Promise<ChatSendResult> {
 
   let res: Response;
   try {
-    res = await (isPrototype ? apiFetch : fetch)(url.toString(), {
+    res = await (isEntryChatLive ? fetch : apiFetch)(url.toString(), {
       method: "POST",
       headers: { "Content-Type": "application/json" },
+      signal: AbortSignal.timeout(90_000),
       body: JSON.stringify({
         conversationId: input.conversationId,
         occupation: input.occupation,
@@ -76,6 +79,9 @@ export async function send(input: ChatSendInput): Promise<ChatSendResult> {
       }),
     });
   } catch (err) {
+    if (err instanceof Error && (err.name === "TimeoutError" || err.name === "AbortError")) {
+      throw new ChatUnavailableError("timeout");
+    }
     throw new Error(
       `Seam A 연결 실패(${url.origin}). 백엔드가 떠 있는지 확인하세요: ${
         err instanceof Error ? err.message : String(err)
@@ -84,16 +90,19 @@ export async function send(input: ChatSendInput): Promise<ChatSendResult> {
   }
 
   if (!res.ok) {
+    if (res.status === 429) throw new ChatUnavailableError("congested");
     const detail = await res.text().catch(() => "");
     throw new Error(`/api/chat ${res.status} ${res.statusText}: ${detail.slice(0, 300)}`);
   }
 
   const json = await res.json();
+  if (json?.meta?.congested === true || json?.congested === true) throw new ChatUnavailableError("congested");
   const parsed = chatResponseSchema.safeParse(json);
   if (!parsed.success) {
     throw new Error(
       `/api/chat 응답이 계약(conversation-schema)과 불일치: ${parsed.error.message.slice(0, 300)}`,
     );
   }
+  if (parsed.data.message.role !== "assistant") throw new Error("/api/chat 응답 역할이 assistant가 아닙니다.");
   return parsed.data;
 }

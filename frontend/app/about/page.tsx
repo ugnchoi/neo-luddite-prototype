@@ -5,7 +5,7 @@ import { ImprintMark } from "@/components/design-system/imprint";
 import { ThemeToggle } from "@/components/design-system/theme-toggle";
 import { PublicAccountNav } from "@/components/layout/public-account-nav";
 import styles from "../entry.module.css";
-import { isPrototype } from "@/lib/data-mode";
+import { isPrototype, isEntryChatLive } from "@/lib/data-mode";
 
 export const metadata: Metadata = {
   title: "서비스 소개 — Credigraph",
@@ -24,8 +24,8 @@ export default function AboutPage() {
       <section className={styles.aboutHero} aria-labelledby="about-title">
         <h1 id="about-title">사업자의 일상 가까이,<br />세무 전문가와 함께.</h1>
         <p>사업을 하다 생기는 세무 질문, 어디서부터 물어봐야 할지 막막할 때가 있습니다. 세무 용어를 먼저 배우지 않아도, 내 상황을 이야기하는 데서 상담이 시작되도록 만듭니다.</p>
-        <Link href="/#consultation" className={styles.primaryAction}>{isPrototype ? "질문하고 체험하기" : "첫 질문 시작하기"} <ArrowRight size={18} aria-hidden="true" /></Link>
-        {isPrototype && <span className={styles.actionNote}>현재 체험 버전에서는 미리 준비된 응답으로 상담 흐름을 살펴볼 수 있습니다.</span>}
+        <Link href="/#consultation" className={styles.primaryAction}>{!isEntryChatLive ? "질문하고 체험하기" : "첫 질문 시작하기"} <ArrowRight size={18} aria-hidden="true" /></Link>
+        {!isEntryChatLive && <span className={styles.actionNote}>현재 체험 버전에서는 미리 준비된 응답으로 상담 흐름을 살펴볼 수 있습니다.</span>}
       </section>
       <section className={styles.aboutRow} aria-labelledby="owners-title">
         <h2 id="owners-title">가게를 운영하든,<br />회사를 이끌든.</h2>
@@ -45,11 +45,11 @@ export default function AboutPage() {
       </section>
       <section className={styles.aboutDemo} aria-labelledby="demo-title">
         <h2 id="demo-title">{isPrototype ? "지금 체험할 수 있는 것" : "이용 전 확인해 주세요"}</h2>
-        <p>{isPrototype ? "현재 체험 버전에서는 질문하기, 미리 준비된 응답 확인, 전문가 둘러보기, 상담 신청 과정을 체험할 수 있습니다. 실제 AI 응답이나 세무 판단, 실제 세무사 연결 및 상담 접수는 제공하지 않습니다." : "AI 안내를 통해 질문과 자료를 정리할 수 있습니다. 개별 사안의 최종 세무 판단은 세무사와 확인해 주세요."}</p>
+        <p>{!isEntryChatLive ? "현재 체험 버전에서는 질문하기, 미리 준비된 응답 확인, 전문가 둘러보기, 상담 신청 과정을 체험할 수 있습니다. 실제 AI 응답이나 세무 판단, 실제 세무사 연결 및 상담 접수는 제공하지 않습니다." : isPrototype ? "AI 상담은 실제 답변을 제공합니다. 전문가 프로필·로그인·사례 학습·공유 승인·상담방은 샘플 체험입니다. 실제 세무사 연결이나 상담 접수는 제공하지 않습니다." : "AI 안내를 통해 질문과 자료를 정리할 수 있습니다. 개별 사안의 최종 세무 판단은 세무사와 확인해 주세요."}</p>
         <p>대화는 현재 브라우저에 보관됩니다. 다른 기기에서는 불러올 수 없으며, 브라우저 데이터를 지우면 사라집니다. 저장이 차단된 환경에서는 새로고침 후 유지되지 않을 수 있습니다. {isPrototype && "체험에는 실제 개인정보나 민감한 사업 자료 대신 가상의 상황을 사용해 주세요."}</p>
-        <Link href="/#consultation" className={styles.primaryAction}>{isPrototype ? "로그인 없이 체험하기" : "로그인 없이 질문하기"} <ArrowRight size={18} aria-hidden="true" /></Link>
+        <Link href="/#consultation" className={styles.primaryAction}>{!isEntryChatLive ? "로그인 없이 체험하기" : "로그인 없이 질문하기"} <ArrowRight size={18} aria-hidden="true" /></Link>
       </section>
     </main>
-    <footer className={styles.footer}><div><Link href="/" className={styles.brand}><ImprintMark size={26} />Credigraph</Link><p>세무사가 함께 만들고 다듬는, 사업자를 위한 AI 세무상담.</p></div><p>{isPrototype ? <>현재 체험 버전에서는 미리 준비된 응답을 보여드립니다.<br />실제 AI 응답·세무 판단·상담 접수는 제공하지 않습니다.</> : "최종 세무 판단은 세무사와 확인해 주세요."}</p><Link href="/#consultation">질문하기</Link></footer>
+    <footer className={styles.footer}><div><Link href="/" className={styles.brand}><ImprintMark size={26} />Credigraph</Link><p>세무사가 함께 만들고 다듬는, 사업자를 위한 AI 세무상담.</p></div><p>{!isEntryChatLive ? <>현재 체험 버전에서는 미리 준비된 응답을 보여드립니다.<br />실제 AI 응답·세무 판단·상담 접수는 제공하지 않습니다.</> : "최종 세무 판단은 세무사와 확인해 주세요."}</p><Link href="/#consultation">질문하기</Link></footer>
   </div>;
 }

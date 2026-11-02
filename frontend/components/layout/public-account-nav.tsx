@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { isPrototype, isEntryChatLive } from "@/lib/data-mode";
 import { useAccountHydrated, useAccountStore } from "@/lib/account-store";
 import { routeForAccount } from "@/lib/account-route";
 import { buttonVariants } from "@/components/ui/button";
@@ -13,6 +14,6 @@ export function PublicAccountNav() {
   const admin = useAccountStore((state) => state.admin);
   const active = hydrated ? session : null;
   return <Link href={active ? routeForAccount({ viewer, auditor, admin }[active]) : "/login"} className={buttonVariants({ variant: "ghost", size: "sm" })}>
-    {active === "auditor" ? "전문가 워크스페이스" : active === "admin" ? "운영 콘솔" : active === "viewer" ? "내 상담" : "로그인"}
+    {active === "auditor" ? "전문가 워크스페이스" : active === "admin" ? "운영 콘솔" : active === "viewer" ? "내 상담" : isPrototype && isEntryChatLive ? "체험 계정" : "로그인"}
   </Link>;
 }

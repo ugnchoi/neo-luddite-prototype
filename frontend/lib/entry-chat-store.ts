@@ -5,7 +5,7 @@ import { useStore } from "zustand";
 import { useAccountStore } from "./account-store";
 import { createEntryChatStore, messageText, type EntryChatState, type EntryResponder } from "./entry-chat";
 import { getScenario } from "./prototype/backend";
-import { isPrototype } from "./data-mode";
+import { isEntryChatLive } from "./data-mode";
 import { send as sendChat } from "@/services/chat";
 
 const browserStorage = {
@@ -26,7 +26,7 @@ const liveRespond: EntryResponder = async (conversation) => {
   return message;
 };
 
-export const entryChatStore = createEntryChatStore(browserStorage, getScenario(), isPrototype ? undefined : liveRespond);
+export const entryChatStore = createEntryChatStore(browserStorage, getScenario(), isEntryChatLive ? liveRespond : undefined);
 
 export function useEntryChat<T>(selector: (state: EntryChatState) => T) {
   return useStore(entryChatStore, selector);
