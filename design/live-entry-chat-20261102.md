@@ -45,6 +45,6 @@ NEXT_PUBLIC_API_BASE=https://158-179-177-51.sslip.io
 
 ## 반영 시 확인
 
-프로토타입 배포 환경에 위 세 값을 설정하고 재빌드한다. 기존 Supabase 설정이 있어도 DATA_MODE=prototype을 유지한다. 배포 후 실제 도메인에서 로그인 없는 질문, 대기·재시도, 재접속, 전문가 체험의 로컬 유지를 확인한다. 롤백은 ENTRY_CHAT_MODE를 제거한 뒤 재빌드하면 된다.
+`frontend/vercel.json`의 buildCommand가 VERCEL_ENV=production인 배포에서 위 세 값을 설정한다. 기본 로컬 빌드와 Preview 배포는 기존 환경 설정을 따른다. 기존 Supabase 설정이 있어도 운영 빌드의 DATA_MODE=prototype을 유지한다. 배포 후 실제 도메인에서 로그인 없는 질문, 대기·재시도, 재접속, 전문가 체험의 로컬 유지를 확인한다. 롤백은 vercel.json의 ENTRY_CHAT_MODE=live를 prototype으로 바꾸고 재배포하면 된다.
 
 이 문서는 코드와 로컬 검증 기록이다. 별도 배포 성공 기록이 없다면 공개 프로토타입 반영 완료로 해석하지 않는다.
