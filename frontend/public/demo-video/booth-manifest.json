@@ -1,9 +1,9 @@
 {
-  "source": "CrediGraph-Booth-v04.html",
-  "sourceSha256": "0dfae7f4bdfa53c82d96b819ac4645b29369a85e823273089e911507ba93957d",
+  "source": "CrediGraph-Booth-v05.html",
+  "sourceSha256": "3240a835e46d4ec8351c69ee8cb2c59b6bbc4edad106a84c0d98c345b5f8dc6b",
   "entry": "booth.html",
-  "entrySha256": "85b0971bff647f501d4f4eae0ea17a08c74cbc9452b819deb00bf1d9dd866455",
-  "durationSeconds": 40,
+  "entrySha256": "3b9c5977fd6007c60e16b40e1467771196cfcb530e02331924d523c955d13ab3",
+  "durationSeconds": 44,
   "width": 1080,
   "height": 1920,
   "qrDestination": "https://neo-luddite-prototype.vercel.app/",
@@ -23,18 +23,11 @@
       "source": "booth/v01/ui-referral.mp4"
     },
     {
-      "file": "assets/8650893ce2cc42a6ae65.mp3",
+      "file": "assets/85667411aa6917c3c5c0.mp3",
       "mime": "audio/mpeg",
-      "bytes": 1282341,
-      "sha256": "8650893ce2cc42a6ae6543ab95b6a8edb193f9c9b9ea57f91a12173338f64b46",
-      "source": "booth/v04/film-mix.mp3"
-    },
-    {
-      "file": "assets/edd329a94d672524a538.png",
-      "mime": "image/png",
-      "bytes": 56468,
-      "sha256": "edd329a94d672524a538713f63e254c21b527c3bd29289d58abaed4e74994a7d",
-      "source": "human-imprint/grain.png"
+      "bytes": 1410092,
+      "sha256": "85667411aa6917c3c5c053ead3395cf35e8b92c02b5a18cff216a3e8a1cc9444",
+      "source": "booth/v05/film-mix.mp3"
     },
     {
       "file": "assets/bb30555c00e6ea3a508e.mp4",
@@ -79,10 +72,10 @@
       "source": "human-imprint/people/yun-seojin-ai.png"
     },
     {
-      "file": "assets/b8819bd815aa90380f66.js",
+      "file": "assets/36685c87223fa9d91746.js",
       "mime": "text/javascript",
-      "bytes": 507612,
-      "sha256": "b8819bd815aa90380f66d2073276aca38679bccb4821a3297b56817ecb5f63dc",
+      "bytes": 526785,
+      "sha256": "36685c87223fa9d91746d67668d0ca53fe0eaec91732d75e3b75a6471d1c4d61",
       "source": "booth-player.js"
     }
   ]
