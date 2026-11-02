@@ -1,8 +1,8 @@
 {
   "source": "CrediGraph-Booth-v05.html",
-  "sourceSha256": "3240a835e46d4ec8351c69ee8cb2c59b6bbc4edad106a84c0d98c345b5f8dc6b",
+  "sourceSha256": "7fc08697901c269217d31cb8e5fe746675f37721ec4499ebda3d05a4c2707a19",
   "entry": "booth.html",
-  "entrySha256": "3b9c5977fd6007c60e16b40e1467771196cfcb530e02331924d523c955d13ab3",
+  "entrySha256": "d438318fef4c1de5094582eeffe02d5d83074a61edcfcec17a12cebd934a577f",
   "durationSeconds": 44,
   "width": 1080,
   "height": 1920,
@@ -72,10 +72,10 @@
       "source": "human-imprint/people/yun-seojin-ai.png"
     },
     {
-      "file": "assets/36685c87223fa9d91746.js",
+      "file": "assets/7b31fd675da65138f0d2.js",
       "mime": "text/javascript",
-      "bytes": 526785,
-      "sha256": "36685c87223fa9d91746d67668d0ca53fe0eaec91732d75e3b75a6471d1c4d61",
+      "bytes": 526840,
+      "sha256": "7b31fd675da65138f0d2f2587165dba7ae6172c2f8adc3b330d5c77fcae45457",
       "source": "booth-player.js"
     }
   ]
