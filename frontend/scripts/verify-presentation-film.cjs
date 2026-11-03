@@ -22,7 +22,7 @@ const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
  await p.locator('#film-toggle').click();await p.waitForTimeout(300);assert(await f.evaluate(()=>[...document.querySelectorAll('audio,video')].every(a=>a.paused)));
  await p.locator('#film-seek').fill('4740');await p.locator('#film-seek').dispatchEvent('input');await f.waitForFunction(()=>window.__consultationReview.frame()===4740);
  await p.locator('#film-toggle').click();await p.waitForTimeout(800);assert(await f.evaluate(()=>window.__consultationReview.frame()>4740));
- await p.locator('#film-restart').click();await f.waitForFunction(()=>window.__consultationReview.frame()>=1200&&window.__consultationReview.frame()<1300);
+ await p.locator('#film-restart').click();await f.waitForFunction(()=>window.__consultationReview.frame()>=0&&window.__consultationReview.frame()<100);
  await p.locator('#film-next').click();await p.waitForTimeout(300);assert(await f.evaluate(()=>[...document.querySelectorAll('audio,video')].every(a=>a.paused)));assert(await p.locator('#slide-4').evaluate(el=>el.classList.contains('active')));
  await p.locator('#fullscreen').click();assert(await p.evaluate(()=>Boolean(document.fullscreenElement)));await p.evaluate(()=>document.exitFullscreen());
  await p.setViewportSize({width:390,height:844});assert(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));assert.deepEqual(errors,[]);
