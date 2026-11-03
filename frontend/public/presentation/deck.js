@@ -21,7 +21,7 @@
   const frame=$('demo-frame'), film=frame.closest('.slide');
   let filmReady=false, started=false, playing=false, filmPosition=0, pendingPlay=false;
   const command=(command,extra={})=>frame.contentWindow?.postMessage({channel:'credigraph-film',command,...extra},'*');
-  const loadFilm=()=>{if(!frame.getAttribute('src'))frame.src='assets/demo.html?clean=1&embed=1&frame=0';};
+  const loadFilm=()=>{if(!frame.getAttribute('src'))frame.src=frame.dataset.src;};
   const startFilm=()=>{loadFilm();pendingPlay=true;$('film-start').textContent='시연 준비 중…';if(filmReady)playFilm();};
   const playFilm=()=>{pendingPlay=false;started=true;playing=true;film.classList.add('started');command('play');$('film-toggle').textContent='일시정지';};
   const pauseFilm=()=>{pendingPlay=false;playing=false;command('pause');$('film-toggle').textContent='재생';};
@@ -36,10 +36,11 @@
     if(e.data.type==='state'){
       filmPosition=e.data.frame;playing=e.data.playing;
       const sec=Math.max(0,Math.floor(filmPosition/30));
-      $('film-clock').textContent=`${Math.floor(sec/60)}:${String(sec%60).padStart(2,'0')} / 4:00`;
+      $('film-clock').textContent=`${Math.floor(sec/60)}:${String(sec%60).padStart(2,'0')} / 3:20`;
       $('film-seek').value=filmPosition;$('film-toggle').textContent=playing?'일시정지':'재생';
     }
     if(e.data.type==='ended'&&slides[index]===film)show(index+1);
+    if(e.data.type==='error'){pendingPlay=false;playing=false;started=false;film.classList.remove('started');$('film-start').innerHTML='시연 다시 시작 <span>3분 20초</span>';$('message').textContent=e.data.message;}
   });
   window.addEventListener('beforeprint',()=>{animation?.revert();pauseFilm();});
   document.addEventListener('visibilitychange',()=>{if(document.hidden)pauseFilm();});
@@ -57,7 +58,7 @@
     window.scrollTo(0, 0);
     if(index===1||slides[index]===film)loadFilm();
     animate(slides[index],index-previous);
-    if(slides[index]===film && !started){$('film-start').innerHTML='시연 시작 <span>4분</span>';}
+    if(slides[index]===film && !started){$('film-start').innerHTML='시연 시작 <span>3분 20초</span>';}
 
   };
   const closePanel = (id, opener, restore = true) => { $(id).hidden = true; $(opener).setAttribute('aria-expanded', 'false'); if (restore) $(opener).focus(); };

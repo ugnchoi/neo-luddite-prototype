@@ -3,9 +3,9 @@
   "source_demo_sha256": "b1b9e6255843dbe3c20472ca5c56bd5cf867260bc448615b51f6f642a15793e1",
   "files": {
     "CrediGraph-presentation-v3.pdf": "923c772a5ea4e97fbc476615a7adc2d859aa8a3bd58050a072eaaa80b80ad9df",
-    "deck.js": "83ee129723f025f3d71451b36cd196387e8c48b508c88b028841705d4d7ef5f2",
+    "deck.js": "06c8acac8c9d8c783cc877b5f0d859b512720e724268a43e82df062c254f421b",
     "deck.css": "d61ec2e213cb514db7b1d2895609b70f47524023282d8d4fdbb69366ff4fdc0a",
-    "index.html": "066c902f966329dc18085c284f5fbe679cb812a65425e40125fa0197d3d92bc7",
+    "index.html": "dcdae3710c77bb968f2f36700a5a533b472138f85923b80405b2f3dbae9ed6f2",
     "assets/demo-v14.html": "a5d522144b0c00d86142c49e8118d17e2980765a71a39aea45135f79cca9e906",
     "assets/PretendardVariable.woff2": "9599f12fd42fc0bce1cd50b47a0c022e108d7aa64dd0d1bb0ed44f3282d900b4",
     "assets/agent.png": "5bde96313fe5113b22f8881716a2a0612da09521656e0ba1b6ac0fdfd78d7fa5",
@@ -17,7 +17,9 @@
     "assets/film-bridge.js": "b9562248aaf2c1237dc92738736535623c45db36a4e95bf76b7c7b82d242707f",
     "assets/jung-joongeun-headshot.png": "745bc437f159c12d5c5d06e247e29b76b70fac9d751f958672f64eb4ca7338bc",
     "assets/vendor/gsap.min.js": "96c01b81f44a3290e2b4532f55e2c9534b2adc43273a19f3756b2cb41f0fd0b6",
-    "assets/demo.html": "7e76dbf39f688a1bc3e89c127ff4625b3a119352239ed96dcb114843281082bb"
+    "assets/demo.html": "7e76dbf39f688a1bc3e89c127ff4625b3a119352239ed96dcb114843281082bb",
+    "assets/film-native.js": "526b52b7f2a7a85a5780039682ee09d33cfecb7f93a790fb217bb5012c297f2f",
+    "assets/presentation-film.html": "31e8378537628b8cfb304f62d83495f8f5686f58d9f227d42362919ece5ab583"
   },
   "source_demo": "Human-Imprint-v17.html",
   "audio": [
@@ -32,9 +34,22 @@
     }
   ],
   "filmRange": {
-    "startFrame": 0,
+    "startFrame": 1200,
     "endFrame": 7199,
     "fps": 30,
-    "durationSeconds": 240
+    "durationSeconds": 200
+  },
+  "playback": {
+    "mode": "native-video",
+    "file": "/demo-video/assets/e1ef846c2ef56156ff6a.mp4",
+    "bytes": 74727078,
+    "sha256": "e1ef846c2ef56156ff6ab2ba83d09addd6b1504329e00ce66e5b4a497857067e",
+    "sourceFull": "CrediGraph-Full-v17-YouTube.mp4",
+    "sourceFullSha256": "b4b53116eb00489b380d1b13183b245b15ab340ccdfc509cacff6400712c95a5",
+    "sourceDemoSha256": "b1b9e6255843dbe3c20472ca5c56bd5cf867260bc448615b51f6f642a15793e1",
+    "sourceAudioSha256": "978ece3dae1978616cb0d7538f0c7709591f3f06e003f019a94eb44379d32c86",
+    "entry": "assets/presentation-film.html?v=31e837853762",
+    "durationSeconds": 200,
+    "derivation": "Lossless stream copy of the approved full film, seconds 40 through 240"
   }
 }
