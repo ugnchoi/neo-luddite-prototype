@@ -12,7 +12,7 @@
       gsap.fromTo(slide,{clipPath:direction<0?'inset(0 0 0 8%)':'inset(0 8% 0 0)',opacity:.65},{clipPath:'inset(0 0% 0 0%)',opacity:1,duration:.48,ease:'power3.out',clearProps:'clipPath,opacity'});
       const heading=slide.querySelector('h1,h2');
       if(heading)gsap.from(heading,{y:28,opacity:0,duration:.65,delay:.12,ease:'power3.out'});
-      const groups=slide.querySelectorAll('.opening-proof>div,.before-after>div,.imprint-flow>div,.technical-rows>div,.metric,.sharing>div,.strategy>*,.business>div,.team>div,.rows>div,.source-grid>div');
+      const groups=slide.querySelectorAll('.impact-metrics>div,.impact-delivery,.opening-proof>div,.before-after>div,.imprint-flow>div,.technical-rows>div,.metric,.sharing>div,.strategy>*,.business>div,.team>div,.rows>div,.source-grid>div');
       gsap.from(groups,{y:22,opacity:0,duration:.65,delay:.25,stagger:.13,ease:'power3.out'});
       slide.querySelectorAll('.contour path').forEach((p,i)=>{const l=p.getTotalLength();gsap.fromTo(p,{strokeDasharray:l,strokeDashoffset:l},{strokeDashoffset:0,duration:1.7,delay:i*.016,ease:'power2.inOut'});});
       gsap.from(slide.querySelectorAll('.bars i'),{scaleX:0,transformOrigin:'left',duration:1.1,stagger:.2,delay:.5,ease:'power3.out'});
@@ -56,7 +56,7 @@
     history.replaceState(null, '', `#slide-${index + 1}`);
     document.title = `CrediGraph · ${index + 1}. ${slides[index].dataset.title}`;
     window.scrollTo(0, 0);
-    if(index===1||slides[index]===film)loadFilm();
+    if(index===slides.indexOf(film)-1||slides[index]===film)loadFilm();
     animate(slides[index],index-previous);
     if(slides[index]===film && !started){$('film-start').innerHTML='시연 시작 <span>3분 20초</span>';}
 

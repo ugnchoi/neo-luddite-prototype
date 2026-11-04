@@ -13,7 +13,8 @@ const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
  try{
   const p=await b.newPage({viewport:{width:1440,height:1000}});p.on('pageerror',e=>errors.push(e.message));
   if(stress){const cdp=await p.context().newCDPSession(p);await cdp.send('Emulation.setCPUThrottlingRate',{rate:4});await cdp.send('Network.enable');await cdp.send('Network.emulateNetworkConditions',{offline:false,latency:80,downloadThroughput:1024*1024,uploadThroughput:1024*1024});}
-  await p.goto(origin+'/presentation#slide-3',{waitUntil:'domcontentloaded'});
+  await p.goto(origin+'/presentation',{waitUntil:'domcontentloaded'});
+  await p.evaluate(()=>{location.hash=document.querySelector('.film').id;});
   await p.waitForFunction(()=>!document.querySelector('#film-toggle').disabled);
   const film=p.frames().find(f=>f.url().includes('/assets/presentation-film.html'));assert(film,'Deck must load the approved rendered cut');
   const state=()=>film.evaluate(()=>{const v=document.querySelector('video');return{time:v.currentTime,duration:v.duration,paused:v.paused,muted:v.muted,volume:v.volume,src:v.currentSrc,seeking:v.seeking};});
@@ -23,12 +24,12 @@ const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
   const seek=async seconds=>{await p.locator('#film-seek').fill(String(seconds*30));await p.locator('#film-seek').dispatchEvent('input');await film.waitForFunction(s=>{const v=document.querySelector('video');return !v.seeking&&Math.abs(v.currentTime-s)<.04;},seconds);};
   await seek(57);await p.locator('#film-toggle').click();await film.waitForFunction(()=>document.querySelector('video').currentTime>57.5);
   await p.locator('#film-restart').click();await film.waitForFunction(()=>{const v=document.querySelector('video');return !v.seeking&&v.currentTime<2;});
-  await p.locator('#film-next').click();await film.waitForFunction(()=>document.querySelector('video').paused);assert(await p.locator('#slide-4').evaluate(el=>el.classList.contains('active')));
+  await p.locator('#film-next').click();await film.waitForFunction(()=>document.querySelector('video').paused);assert(await p.locator('.film + .slide').evaluate(el=>el.classList.contains('active')));
   await p.locator('#fullscreen').click();assert(await p.evaluate(()=>!!document.fullscreenElement));await p.evaluate(()=>document.exitFullscreen());
   await p.locator('#prev').click();await seek(full?0:196);
   await film.evaluate(()=>{const v=document.querySelector('video');window.__qa={decoded:[],events:[],started:performance.now(),ended:false};for(const type of ['loadstart','emptied','waiting','stalled','seeking'])v.addEventListener(type,()=>window.__qa.events.push({type,time:v.currentTime,wall:performance.now()}));v.addEventListener('ended',()=>{window.__qa.ended=true;window.__qa.elapsed=performance.now()-window.__qa.started;window.__qa.quality=v.getVideoPlaybackQuality?.();});const next=(_,m)=>{window.__qa.decoded.push({time:m.mediaTime,wall:performance.now()});if(!v.ended)v.requestVideoFrameCallback(next);};v.requestVideoFrameCallback(next);});
   await p.locator('#film-toggle').click();if(full)console.log('Continuous 3:20 playback started'+(stress?' with 4x CPU throttling and 8 Mbps network':''));
-  await p.waitForFunction(()=>document.querySelector('#slide-4').classList.contains('active'),undefined,{timeout:full?240000:15000});
+  await p.waitForFunction(()=>document.querySelector('.film + .slide').classList.contains('active'),undefined,{timeout:full?240000:15000});
   const playback=await film.evaluate(()=>window.__qa);assert(playback.ended,'Advance only after native video ended');assert((await state()).paused);
   assert(playback.elapsed>=(full?199000:3900));
   const backwards=playback.decoded.slice(1).filter((v,i)=>v.time<playback.decoded[i].time-.01);assert.deepEqual(backwards,[],'Decoded footage must never travel backwards');
