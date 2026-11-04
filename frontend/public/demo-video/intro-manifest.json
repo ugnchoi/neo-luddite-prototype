@@ -1,0 +1,25 @@
+{
+  "revision": "intro-v01",
+  "entry": "intro.html",
+  "entrySha256": "bbb32d5de25986ed1c25a150222f28c99b15a3ac359843f897a0baf20d299b66",
+  "sourceHtmlSha256": "6748142bd480acfb5d07d9ebd14ef507c0c30be717a3495a0839dfa270e448a7",
+  "durationSeconds": 90,
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "serviceUrl": "https://neo-luddite.vercel.app/",
+  "assets": [
+    {
+      "file": "assets/3ab423d57c7844e6a73e.mp4",
+      "bytes": 46641897,
+      "sha256": "3ab423d57c7844e6a73e6e41d6124f5e781eb2b1109e59bdb3bb7ad3e5c26b8b",
+      "source": "CrediGraph-Intro-v01-90s.mp4"
+    },
+    {
+      "file": "assets/9a4d4740a287e59f2729.jpg",
+      "bytes": 58953,
+      "sha256": "9a4d4740a287e59f272952f5fa45e17e44931fa34fa116231fe1dc48f8525f6e",
+      "source": "CrediGraph-Intro-v01-poster.jpg"
+    }
+  ]
+}
