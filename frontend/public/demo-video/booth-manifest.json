@@ -1,12 +1,12 @@
 {
   "source": "CrediGraph-Booth-v05.html",
-  "sourceSha256": "7fc08697901c269217d31cb8e5fe746675f37721ec4499ebda3d05a4c2707a19",
+  "sourceSha256": "9a6d7cd55cb733a7af751950560703162ee8d245f8f9c5885c37fb30a9fb0b1b",
   "entry": "booth.html",
-  "entrySha256": "d438318fef4c1de5094582eeffe02d5d83074a61edcfcec17a12cebd934a577f",
+  "entrySha256": "ebadca0b206ff5d9f5b57d315071e13b91d8c36df59dd7cdde06b748ee9edfcd",
   "durationSeconds": 44,
   "width": 1080,
   "height": 1920,
-  "qrDestination": "https://neo-luddite-prototype.vercel.app/",
+  "qrDestination": "https://neo-luddite.vercel.app/",
   "assets": [
     {
       "file": "assets/9599f12fd42fc0bce1cd.woff2",
@@ -72,10 +72,10 @@
       "source": "human-imprint/people/yun-seojin-ai.png"
     },
     {
-      "file": "assets/7b31fd675da65138f0d2.js",
+      "file": "assets/a1b875885538b4c7f22b.js",
       "mime": "text/javascript",
-      "bytes": 526840,
-      "sha256": "7b31fd675da65138f0d2f2587165dba7ae6172c2f8adc3b330d5c77fcae45457",
+      "bytes": 526787,
+      "sha256": "a1b875885538b4c7f22b4b9cd71b98339f5b91a5d090fa9ac2d92cbfbc9a74ff",
       "source": "booth-player.js"
     }
   ]
