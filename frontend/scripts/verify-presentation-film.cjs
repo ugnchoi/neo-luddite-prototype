@@ -4,10 +4,10 @@ const {chromium}=require('playwright');
 const origin=process.argv[2]||'http://127.0.0.1:3052',out=process.argv[3],full=process.argv.includes('--full'),stress=process.argv.includes('--stress');
 const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
 (async()=>{
- const current=await fetch(origin+'/demo-video/manifest.json').then(r=>r.json());
+ const current=await fetch(origin+'/demo-video/intro-manifest.json').then(r=>r.json());
  const manifest=await fetch(origin+'/presentation/manifest.json').then(r=>r.json());
- assert.equal(manifest.playback.sourceDemoSha256,current.sourceSha256,'Reimport the approved presentation export after updating the main film');
- assert.equal(manifest.playback.sourceAudioSha256,current.assets.find(a=>a.mime==='audio/mpeg').sha256,'Presentation must use the current narration/music mix');
+ assert.equal(manifest.playback.sourceIntroHtmlSha256,current.sourceHtmlSha256,'Deck must match the approved introduction');
+ assert.equal(manifest.playback.sha256,current.assets.find(a=>a.file.endsWith('.mp4')).sha256,'Deck must use the identical approved intro MP4, including its audio');
  const b=await chromium.launch({executablePath:'/home/ugnchoi/.cache/ms-playwright/chromium-1228/chrome-linux64/chrome',args:['--no-sandbox'],ignoreDefaultArgs:['--disable-dev-shm-usage']});
  const errors=[],result={origin,full,stress,checkedAt:new Date().toISOString()};
  try{
@@ -18,7 +18,7 @@ const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
   await p.waitForFunction(()=>!document.querySelector('#film-toggle').disabled);
   const film=p.frames().find(f=>f.url().includes('/assets/presentation-film.html'));assert(film,'Deck must load the approved rendered cut');
   const state=()=>film.evaluate(()=>{const v=document.querySelector('video');return{time:v.currentTime,duration:v.duration,paused:v.paused,muted:v.muted,volume:v.volume,src:v.currentSrc,seeking:v.seeking};});
-  const initial=await state();assert.equal(initial.time,0);assert.equal(initial.duration,200);assert.equal(await p.locator('#film-clock').innerText(),'0:00 / 3:20');
+  const initial=await state();assert.equal(initial.time,0);assert.equal(initial.duration,90);assert.equal(await p.locator('#film-clock').innerText(),'0:00 / 1:30');
   await p.locator('#film-start').click();await film.waitForFunction(()=>document.querySelector('video').currentTime>.7);let s=await state();assert(!s.paused&&!s.muted&&s.volume>0&&s.time<5);
   await p.locator('#film-toggle').click();await p.waitForTimeout(200);const held=(await state()).time;await p.waitForTimeout(350);assert.equal((await state()).time,held);
   const seek=async seconds=>{await p.locator('#film-seek').fill(String(seconds*30));await p.locator('#film-seek').dispatchEvent('input');await film.waitForFunction(s=>{const v=document.querySelector('video');return !v.seeking&&Math.abs(v.currentTime-s)<.04;},seconds);};
@@ -26,15 +26,15 @@ const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
   await p.locator('#film-restart').click();await film.waitForFunction(()=>{const v=document.querySelector('video');return !v.seeking&&v.currentTime<2;});
   await p.locator('#film-next').click();await film.waitForFunction(()=>document.querySelector('video').paused);assert(await p.locator('.film + .slide').evaluate(el=>el.classList.contains('active')));
   await p.locator('#fullscreen').click();assert(await p.evaluate(()=>!!document.fullscreenElement));await p.evaluate(()=>document.exitFullscreen());
-  await p.locator('#prev').click();await seek(full?0:196);
+  await p.locator('#prev').click();await seek(full?0:86);
   await film.evaluate(()=>{const v=document.querySelector('video');window.__qa={decoded:[],events:[],started:performance.now(),ended:false};for(const type of ['loadstart','emptied','waiting','stalled','seeking'])v.addEventListener(type,()=>window.__qa.events.push({type,time:v.currentTime,wall:performance.now()}));v.addEventListener('ended',()=>{window.__qa.ended=true;window.__qa.elapsed=performance.now()-window.__qa.started;window.__qa.quality=v.getVideoPlaybackQuality?.();});const next=(_,m)=>{window.__qa.decoded.push({time:m.mediaTime,wall:performance.now()});if(!v.ended)v.requestVideoFrameCallback(next);};v.requestVideoFrameCallback(next);});
-  await p.locator('#film-toggle').click();if(full)console.log('Continuous 3:20 playback started'+(stress?' with 4x CPU throttling and 8 Mbps network':''));
-  await p.waitForFunction(()=>document.querySelector('.film + .slide').classList.contains('active'),undefined,{timeout:full?240000:15000});
+  await p.locator('#film-toggle').click();if(full)console.log('Continuous 1:30 playback started'+(stress?' with 4x CPU throttling and 8 Mbps network':''));
+  await p.waitForFunction(()=>document.querySelector('.film + .slide').classList.contains('active'),undefined,{timeout:full?130000:15000});
   const playback=await film.evaluate(()=>window.__qa);assert(playback.ended,'Advance only after native video ended');assert((await state()).paused);
-  assert(playback.elapsed>=(full?199000:3900));
+  assert(playback.elapsed>=(full?89000:3900));
   const backwards=playback.decoded.slice(1).filter((v,i)=>v.time<playback.decoded[i].time-.01);assert.deepEqual(backwards,[],'Decoded footage must never travel backwards');
   assert.deepEqual(playback.events.filter(e=>e.type==='emptied'||e.type==='loadstart'),[],'The media source must not reload during playback');
-  if(full){assert(playback.decoded.length>5500,'Missing presented frames');const gaps=playback.decoded.slice(1).map((v,i)=>v.wall-playback.decoded[i].wall);result.maxPresentedGapMs=Math.max(...gaps);assert(result.maxPresentedGapMs<700,'Visible playback stall');}
+  if(full){assert(playback.decoded.length>2400,'Missing presented frames');const gaps=playback.decoded.slice(1).map((v,i)=>v.wall-playback.decoded[i].wall);result.maxPresentedGapMs=Math.max(...gaps);assert(result.maxPresentedGapMs<700,'Visible playback stall');}
   await p.setViewportSize({width:390,height:844});assert(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));assert.deepEqual(errors,[]);
   const media=await fetch(initial.src).then(async r=>{assert.equal(r.status,200);return Buffer.from(await r.arrayBuffer());});assert.equal(sha(media),manifest.playback.sha256,'Hosted video bytes must match the approved cut');
   const range=await fetch(initial.src,{headers:{Range:'bytes=0-127'}});assert.equal(range.status,206,'Progressive video seeking needs byte ranges');

@@ -36,11 +36,11 @@
     if(e.data.type==='state'){
       filmPosition=e.data.frame;playing=e.data.playing;
       const sec=Math.max(0,Math.floor(filmPosition/30));
-      $('film-clock').textContent=`${Math.floor(sec/60)}:${String(sec%60).padStart(2,'0')} / 3:20`;
+      $('film-clock').textContent=`${Math.floor(sec/60)}:${String(sec%60).padStart(2,'0')} / 1:30`;
       $('film-seek').value=filmPosition;$('film-toggle').textContent=playing?'일시정지':'재생';
     }
     if(e.data.type==='ended'&&slides[index]===film)show(index+1);
-    if(e.data.type==='error'){pendingPlay=false;playing=false;started=false;film.classList.remove('started');$('film-start').innerHTML='시연 다시 시작 <span>3분 20초</span>';$('message').textContent=e.data.message;}
+    if(e.data.type==='error'){pendingPlay=false;playing=false;started=false;film.classList.remove('started');$('film-start').innerHTML='시연 다시 시작 <span>1분 30초</span>';$('message').textContent=e.data.message;}
   });
   window.addEventListener('beforeprint',()=>{animation?.revert();pauseFilm();});
   document.addEventListener('visibilitychange',()=>{if(document.hidden)pauseFilm();});
@@ -58,7 +58,7 @@
     window.scrollTo(0, 0);
     if(index===slides.indexOf(film)-1||slides[index]===film)loadFilm();
     animate(slides[index],index-previous);
-    if(slides[index]===film && !started){$('film-start').innerHTML='시연 시작 <span>3분 20초</span>';}
+    if(slides[index]===film && !started){$('film-start').innerHTML='시연 시작 <span>1분 30초</span>';}
 
   };
   const closePanel = (id, opener, restore = true) => { $(id).hidden = true; $(opener).setAttribute('aria-expanded', 'false'); if (restore) $(opener).focus(); };
