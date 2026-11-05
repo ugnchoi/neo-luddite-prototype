@@ -53,20 +53,16 @@ media and player as `/demo-video`, with the deck playback bridge added.
 The offline deck source uses `design/presentation/prepare_film.py` to include
 the standalone film and its local bridge.
 
-## Presentation cut (3:20)
+## Presentation introduction (1:30)
 
-The presentation uses a native H.264/AAC MP4 derived without re-encoding from
-seconds 40–240 of the approved v17 export. This avoids switching individual
-footage sources from network URLs to blob URLs while the scene is playing.
-The standalone main player and the booth player retain their existing behavior.
+The deck uses the approved 90-second introduction as one native H.264/AAC MP4.
+It is byte-identical to the video at `/demo-video/intro.html`, including narration,
+music, captions, and the finished doctor/expert footage.
 
-After approving a new full export, generate and verify its presentation cut,
-then run `node scripts/import-presentation-film.mjs <cut.mp4> <full.mp4>`.
-The importer writes a content-addressed video URL, versions the deck entrypoint,
-and records the original export and current narration/music hashes.
+Run `node scripts/import-presentation-film.mjs <verified-intro-delivery-directory>`.
+The importer verifies the delivery receipt and current intro asset before updating
+its embed, controls, timing labels, cache versions, and provenance manifest.
 `node scripts/verify-presentation-film.cjs <origin> <report.json> --full --stress`
-checks the current version, controls, native ending, progressive seeking, media
-bytes, and uninterrupted playback with a 4x CPU slowdown and 8 Mbps connection.
-Run it after both local import and publication. Updating the interactive HTML
-alone does not replace the approved presentation export; the verifier rejects
-mismatched source versions.
+checks the approved intro identity, controls, native ending, progressive seeking,
+media bytes, and continuous playback. The four-minute main film and portrait
+booth have their own independent players.

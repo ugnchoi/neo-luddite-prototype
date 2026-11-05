@@ -6,7 +6,7 @@
     if (embedded) parent.postMessage({ channel: 'credigraph-film', type, ...extra }, targetOrigin);
   };
   const state = () => send('state', {
-    frame: Math.min(5999, Math.round(video.currentTime * 30)),
+    frame: Math.min(2699, Math.round(video.currentTime * 30)),
     playing: !video.paused && !video.ended,
   });
   let ready = false;
@@ -25,7 +25,7 @@
     }
     if (event.data.command === 'pause') video.pause();
     if (event.data.command === 'seek') {
-      video.currentTime = Math.max(0, Math.min(5999, Number(event.data.frame) || 0)) / 30;
+      video.currentTime = Math.max(0, Math.min(2699, Number(event.data.frame) || 0)) / 30;
     }
     state();
   });
